@@ -9,9 +9,9 @@ import tensorflow as tf
 AUTOTUNE = tf.data.AUTOTUNE
 EPOCHS = 10
 BATCH_SIZE = 32
-IMG_HEIGHT = 64
-IMG_WIDTH = 64
 DATASET = "/home/tz251/Desktop/3_Png"
+IMG_HEIGHT = 180
+IMG_WIDTH = 180
 # DATASET = "/home/tz251/Documents/DPI/USTC-TK2016/4_Png"
 
 print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
@@ -20,13 +20,6 @@ gpus = tf.config.experimental.list_physical_devices(device_type="GPU")
 tf.config.experimental.set_visible_devices(devices=gpus[0], device_type="GPU")
 tf.config.experimental.set_memory_growth(device=gpus[0], enable=True)
 
-def f1(y, y_hat, thresh=0.5):
-    y_pred = tf.cast(tf.greater(y_hat, thresh), tf.float32)
-    tp = tf.cast(tf.math.count_nonzero(y_pred * y, axis=0), tf.float32)
-    fp = tf.cast(tf.math.count_nonzero(y_pred * (1 - y), axis=0), tf.float32)
-    fn = tf.cast(tf.math.count_nonzero((1 - y_pred) * y, axis=0), tf.float32)
-    f1 = 2*tp / (2*tp + fn + fp + 1e-16)
-    return f1
 
 def macro_f1(y, y_hat, thresh=0.5):
     y_pred = tf.cast(tf.greater(y_hat, thresh), tf.float32)
@@ -37,6 +30,15 @@ def macro_f1(y, y_hat, thresh=0.5):
     macro_f1 = tf.reduce_mean(f1)
     return macro_f1
 
+import pathlib
+dataset_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
+data_dir = tf.keras.utils.get_file('flower_photos', origin=dataset_url, untar=True)
+DATASET = pathlib.Path(data_dir)
+
+image_count = len(list(DATASET.glob('*/*.jpg')))
+print(image_count)
+
+
 # TODO: Data is resized to (28,28). This should be changed.
 train_ds = tf.keras.preprocessing.image_dataset_from_directory(
     # DATASET + "/Train",
@@ -45,7 +47,7 @@ train_ds = tf.keras.preprocessing.image_dataset_from_directory(
     label_mode="categorical",
     color_mode="rgb",
     batch_size=BATCH_SIZE,
-    seed=42,
+    seed=123,
     image_size=(IMG_HEIGHT, IMG_WIDTH),
     shuffle=True,
     validation_split=0.2,
@@ -60,7 +62,7 @@ val_ds = tf.keras.preprocessing.image_dataset_from_directory(
     label_mode="categorical",
     color_mode="rgb",
     batch_size=BATCH_SIZE,
-    seed=42,
+    seed=123,
     image_size=(IMG_HEIGHT, IMG_WIDTH),
     shuffle=True,
     validation_split=0.2,
@@ -82,10 +84,9 @@ for images, labels in train_ds.take(1):
         plt.axis("off")
 plt.show()
 
-
 model = tf.keras.Sequential([
     tf.keras.layers.experimental.preprocessing.Rescaling(1./255),
-    tf.keras.layers.Conv2D(16, 2, 
+    tf.keras.layers.Conv2D(16, 3, 
         kernel_initializer=tf.keras.initializers.TruncatedNormal(stddev=0.1),
         bias_initializer=tf.keras.initializers.Constant(0.1), 
         # strides=(1, 1), 
@@ -93,14 +94,14 @@ model = tf.keras.Sequential([
         activation='relu'
     ),
     tf.keras.layers.MaxPooling2D(),
-    tf.keras.layers.Conv2D(32, 2, 
+    tf.keras.layers.Conv2D(32, 3, 
         kernel_initializer=tf.keras.initializers.TruncatedNormal(stddev=0.1),
         bias_initializer=tf.keras.initializers.Constant(0.1), 
         padding='SAME', 
         activation='relu'
     ),
     tf.keras.layers.MaxPooling2D(),
-    tf.keras.layers.Conv2D(64, 2,
+    tf.keras.layers.Conv2D(64, 3,
         kernel_initializer=tf.keras.initializers.TruncatedNormal(stddev=0.1),
         bias_initializer=tf.keras.initializers.Constant(0.1), 
         # strides=(1, 1), 
@@ -121,7 +122,7 @@ model = tf.keras.Sequential([
 model.compile(
     optimizer='adam',
     loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
-    metrics=['accuracy', macro_f1, f1]
+    metrics=['accuracy', macro_f1]
 )
 
 train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
