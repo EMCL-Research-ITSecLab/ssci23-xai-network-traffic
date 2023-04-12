@@ -1,0 +1,9 @@
+matplotlib==3.7.1
+pandas==2.0.0
+linformer==0.2.1
+tqdm==4.65.0
+scikit-learn==1.2.2
+split-folders==0.5.1
+pynvml==11.5.0
+ipywidgets
+click==8.1.3

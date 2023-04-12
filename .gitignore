@@ -5,7 +5,9 @@ __pycache__/
 
 # C extensions
 *.so
-
+*.csv
+*.npy
+*.keras
 # Distribution / packaging
 .Python
 build/
