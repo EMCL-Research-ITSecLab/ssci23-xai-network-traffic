@@ -1,8 +1,9 @@
 from tensorflow import keras
 
-PATH="/home/smachmeier/data/binary-classification-flow-minp3-dim16-cols8-split"
 
-def get_datasets(path=PATH, labels="inferred", label_mode="binary", color_mode="rgb", batch_size=32, image_size=(128,128)):
+def get_datasets(path, batch_size, image_size, label_mode, shuffle_buffer, num_classes, labels="inferred", color_mode="rgb"):
+    AUTOTUNE = tf.data.AUTOTUNE
+
     train_ds = keras.utils.image_dataset_from_directory(
         directory=f"{PATH}/train",
         labels=labels,
