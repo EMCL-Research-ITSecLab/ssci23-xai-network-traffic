@@ -1,8 +1,10 @@
-import splitfolders
-import click
+import glob
 import hashlib
 import os
-import glob
+
+import click
+import splitfolders
+
 
 def add_options(options):
     def _add_options(func):
@@ -11,6 +13,7 @@ def add_options(options):
         return func
 
     return _add_options
+
 
 _split_options = [
     click.option(
@@ -66,7 +69,7 @@ def split_ratio(output_dir, input_dir, remove_duplicates):
 def remove_duplicates(directory):
     hashes = set()
     hashes_file = {}
-    for filename in glob.iglob(directory + '/*/**/*.png', recursive=True):
+    for filename in glob.iglob(directory + "/*/**/*.png", recursive=True):
         digest = hashlib.sha1(open(filename, "rb").read()).digest()
         if digest not in hashes:
             hashes.add(digest)
@@ -74,6 +77,7 @@ def remove_duplicates(directory):
         else:
             os.remove(hashes_file.get(digest))
             os.remove(path)
+
 
 if __name__ == "__main__":
     split()

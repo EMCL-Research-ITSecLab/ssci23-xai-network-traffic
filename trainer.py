@@ -6,20 +6,18 @@ python -m trainer --model=cnn --dataset=mnist
 You can then monitor the logs on Tensorboard:
 tensorboard --logdir=output"""
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
+from __future__ import absolute_import, division, print_function
 
 import tensorflow as tf
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
-tf.flags.DEFINE_string("model", "", "Model name.")
-tf.flags.DEFINE_string("dataset", "", "Dataset name.")
-tf.flags.DEFINE_string("output_dir", "", "Optional output dir.")
+tf.flags.DEFINE_string("model", "VGG19", "Model name.")
+tf.flags.DEFINE_string("dataset", "USTC", "Dataset name.")
+tf.flags.DEFINE_string("output_dir", "results", "Optional output dir.")
 tf.flags.DEFINE_string("schedule", "train_and_evaluate", "Schedule.")
 tf.flags.DEFINE_string("hparams", "", "Hyper parameters.")
-tf.flags.DEFINE_integer("num_epochs", 100000, "Number of training epochs.")
+tf.flags.DEFINE_integer("num_epochs", 10, "Number of training epochs.")
 tf.flags.DEFINE_integer("save_summary_steps", 10, "Summary steps.")
 tf.flags.DEFINE_integer("save_checkpoints_steps", 10, "Checkpoint steps.")
 tf.flags.DEFINE_integer("eval_steps", None, "Number of eval steps.")
