@@ -1,6 +1,63 @@
 # Weights and Biases related imports
 import wandb
+import numpy as np
 from wandb.keras import WandbEvalCallback
+import tensorflow as tf
+
+
+class PRMetrics(tf.keras.callbacks.Callback):
+  """ Custom callback to compute per-class PR & ROC curves
+  at the end of each training epoch"""
+  def __init__(self, generator=None, num_log_batches=1):
+    self.generator = generator
+    self.num_batches = num_log_batches
+    # store full names of classes
+    self.class_names = { v: k for k, v in generator.class_indices.items() }
+    self.flat_class_names = [k for k, v in generator.class_indices.items()]
+
+  def on_epoch_end(self, epoch, logs={}):
+    # collect validation data and ground truth labels from generator
+    val_data, val_labels = zip(*(self.generator[i] for i in range(self.num_batches)))
+    val_data, val_labels = np.vstack(val_data), np.vstack(val_labels)
+
+    # use the trained model to generate predictions for the given number
+    # of validation data batches (num_batches)
+    val_predictions = self.model.predict(val_data)
+    ground_truth_class_ids = val_labels.argmax(axis=1)
+
+    # Log precision-recall curve
+    # the key "pr_curve" is the id of the plot--do not change
+    # this if you want subsequent runs to show up on the same plot
+    wandb.log({"roc_curve" : wandb.plot.roc_curve(ground_truth_class_ids, val_predictions, labels=self.flat_class_names)})
+
+
+class ConfusionMetrics(tf.keras.callbacks.Callback):
+  """ Custom callback to compute metrics at the end of each training epoch"""
+  def __init__(self, generator=None, num_log_batches=1):
+    self.generator = generator
+    self.num_batches = num_log_batches
+    # store full names of classes
+    self.flat_class_names = [k for k, v in generator.class_indices.items()]
+
+  def on_epoch_end(self, epoch, logs={}):
+    # collect validation data and ground truth labels from generator
+    val_data, val_labels = zip(*(self.generator[i] for i in range(self.num_batches)))
+    val_data, val_labels = np.vstack(val_data), np.vstack(val_labels)
+
+    # use the trained model to generate predictions for the given number
+    # of validation data batches (num_batches)
+    val_predictions = self.model.predict(val_data)
+    ground_truth_class_ids = val_labels.argmax(axis=1)
+    # take the argmax for each set of prediction scores
+    # to return the class id of the highest confidence prediction
+    top_pred_ids = val_predictions.argmax(axis=1)
+
+    # Log confusion matrix
+    # the key "conf_mat" is the id of the plot--do not change
+    # this if you want subsequent runs to show up on the same plot
+    wandb.log({"conf_mat" : wandb.plot.confusion_matrix(probs=None,
+                            preds=top_pred_ids, y_true=ground_truth_class_ids,
+                            class_names=self.flat_class_names)})
 
 
 class WandbClfEvalCallback(WandbEvalCallback):
@@ -22,7 +79,6 @@ class WandbClfEvalCallback(WandbEvalCallback):
 
         for idx in table_idxs:
             pred = preds[idx]
-            logit = logits[idx]
             self.pred_table.add_data(
                 epoch,
                 self.data_table_ref.data[idx][0],

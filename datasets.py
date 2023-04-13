@@ -1,11 +1,12 @@
 from tensorflow import keras
+import tensorflow as tf
 
 
 def get_datasets(path, batch_size, image_size, label_mode, shuffle_buffer, num_classes, labels="inferred", color_mode="rgb"):
     AUTOTUNE = tf.data.AUTOTUNE
 
     train_ds = keras.utils.image_dataset_from_directory(
-        directory=f"{PATH}/train",
+        directory=f"{path}/train",
         labels=labels,
         label_mode=label_mode,
         color_mode=color_mode,
@@ -15,7 +16,7 @@ def get_datasets(path, batch_size, image_size, label_mode, shuffle_buffer, num_c
     )
 
     val_ds = keras.utils.image_dataset_from_directory(
-        directory=f"{PATH}/val",
+        directory=f"{path}/val",
         labels=labels,
         label_mode=label_mode,
         color_mode=color_mode,
@@ -25,7 +26,7 @@ def get_datasets(path, batch_size, image_size, label_mode, shuffle_buffer, num_c
     )
 
     test_ds = keras.utils.image_dataset_from_directory(
-        directory=f"{PATH}/test",
+        directory=f"{path}/test",
         labels=labels,
         label_mode=label_mode,
         color_mode=color_mode,
