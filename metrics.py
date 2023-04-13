@@ -1,8 +1,9 @@
 # Weights and Biases related imports
-import wandb
 import numpy as np
-from wandb.keras import WandbEvalCallback
 import tensorflow as tf
+from wandb.keras import WandbEvalCallback
+
+import wandb
 
 
 class PRMetrics(tf.keras.callbacks.Callback):

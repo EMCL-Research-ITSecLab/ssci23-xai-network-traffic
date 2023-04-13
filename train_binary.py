@@ -1,15 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
-# Weights and Biases related imports
-import wandb
 from tensorflow import keras
 from wandb.keras import (WandbEvalCallback, WandbMetricsLogger,
                          WandbModelCheckpoint)
 
 import config
+# Weights and Biases related imports
+import wandb
 from datasets import get_datasets
-from metrics import WandbClfEvalCallback, PRMetrics
+from metrics import PRMetrics, WandbClfEvalCallback
 from models import custom_model, xception_model
 
 train_ds, val_ds, test_ds = get_datasets(

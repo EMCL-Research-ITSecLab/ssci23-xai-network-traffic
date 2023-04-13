@@ -1,5 +1,5 @@
-from tensorflow import keras
 import tensorflow as tf
+from tensorflow import keras
 
 
 def get_datasets(path, batch_size, image_size, label_mode, shuffle_buffer, num_classes, labels="inferred", color_mode="rgb"):

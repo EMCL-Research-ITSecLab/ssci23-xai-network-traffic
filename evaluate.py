@@ -5,7 +5,21 @@ import tensorflow as tf
 from sklearn.metrics import auc
 from tensorflow import keras
 
+import config
 
+model = keras.models.load_model('results/save_at_2.keras')
+
+val_ds = keras.utils.image_dataset_from_directory(
+    directory="/home/smachmeier/data/test-data-flow-minp3-dim16-cols8",
+    labels="inferred",
+    label_mode=config.configs["label_mode"],
+    color_mode="rgb",
+    seed=1337,
+    batch_size=config.configs["batch_size"],
+    image_size=config.configs["image_size"],
+)
+
+print(model.evaluate(val_ds))
 
 # def predict_binary():
 #     # TODO Predict test set
@@ -54,19 +68,3 @@ from tensorflow import keras
 #    img_preprocessed = preprocess_image(image)
 #    prediction = np.argmax(model.predict(img_preprocessed), axis=-1)[0]
 #    return prediction
-
-
-# model = keras.models.load_model('save_at_1.keras')
-
-# for filename in glob.iglob("/home/smachmeier/data/binary-classification-flow-minp3-dim16-cols8-split/test/benign/"+ '*.png', recursive=True):
-#    img = tf.keras.utils.load_img(filename)
-#    input_arr = tf.keras.utils.img_to_array(img)
-#    input_arr = np.array([input_arr])  # Convert single image to a batch.
-#    print(model.predict(input_arr))
-#    break
-
-# for filename in glob.iglob("/home/smachmeier/data/test-images/"+ '*.png', recursive=True):
-#    img = tf.keras.utils.load_img(filename)
-#    input_arr = tf.keras.utils.img_to_array(img)
-#    input_arr = np.array([input_arr])  # Convert single image to a batch.
-#    print(model.predict(input_arr))

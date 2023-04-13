@@ -1,5 +1,6 @@
-import wandb
 from tensorflow import keras
+
+import wandb
 
 wandb.login()
 
@@ -12,8 +13,8 @@ configs = dict(
     label_mode="binary",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=2,
-    dataset_path="/home/smachmeier/data/binary-flow-minp3-dim16-cols8-split",
+    epochs=1,
+    dataset_path="/home/smachmeier/data/binary-flow-minp3-dim16-cols8-split-header",
     history_path="results/save_at_{0}.npy",
     model_path="results/save_at_{0}.keras",
     csv_path="log.csv",
