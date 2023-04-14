@@ -46,7 +46,7 @@ def split_fixed(output_dir, input_dir, remove_duplicates):
     splitfolders.fixed(
         input_dir,
         output=output_dir,
-        fixed=(50000, 25000, 10000),
+        fixed=(10000, 1500, 1000),
         seed=1337,
     )
     if remove_duplicates:

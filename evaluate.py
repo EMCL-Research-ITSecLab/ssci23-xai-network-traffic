@@ -3,21 +3,28 @@ import glob
 import numpy as np
 import tensorflow as tf
 from sklearn.metrics import auc
+from sklearn.utils import class_weight
 from tensorflow import keras
 
 import config
 
-model = keras.models.load_model('results/save_at_2.keras')
+model = keras.models.load_model('results/save_at_10.keras')
 
 val_ds = keras.utils.image_dataset_from_directory(
     directory="/home/smachmeier/data/test-data-flow-minp3-dim16-cols8",
     labels="inferred",
     label_mode=config.configs["label_mode"],
     color_mode="rgb",
-    seed=1337,
+    shuffle=False,
     batch_size=config.configs["batch_size"],
     image_size=config.configs["image_size"],
 )
+
+# ds_labels = [int(labels.numpy()[0]) for _, labels in val_ds.unbatch()]
+# print(ds_labels)
+# class_weights = class_weight.compute_class_weight(class_weight="balanced", classes=[0,1], y=ds_labels)
+# print(class_weights)
+# model.fit(val_ds,epochs=10)
 
 print(model.evaluate(val_ds))
 

@@ -13,18 +13,21 @@ class PRMetrics(tf.keras.callbacks.Callback):
     self.generator = generator
     self.num_batches = num_log_batches
     # store full names of classes
-    self.class_names = { v: k for k, v in generator.class_indices.items() }
-    self.flat_class_names = [k for k, v in generator.class_indices.items()]
+    self.flat_class_names = [labels for _, labels in self.generator.unbatch()]
+    # self.class_names = { v: k for k, v in generator.class_indices.items() }
+    # self.flat_class_names = [k for k, v in generator.class_indices.items()]
 
   def on_epoch_end(self, epoch, logs={}):
     # collect validation data and ground truth labels from generator
-    val_data, val_labels = zip(*(self.generator[i] for i in range(self.num_batches)))
-    val_data, val_labels = np.vstack(val_data), np.vstack(val_labels)
+    # val_data, val_labels = zip((images, labels) for images, labels in self.generator)
+    # val_data, val_labels = np.vstack(val_data), np.vstack(val_labels)
 
     # use the trained model to generate predictions for the given number
     # of validation data batches (num_batches)
-    val_predictions = self.model.predict(val_data)
-    ground_truth_class_ids = val_labels.argmax(axis=1)
+    val_predictions = self.model.predict(self.generator)
+    print(val_predictions.argmax(axis=1))
+    ground_truth_class_ids = y = np.concatenate([y for x, y in self.generator.unbatch()], axis=0)
+    print(ground_truth_class_ids)
 
     # Log precision-recall curve
     # the key "pr_curve" is the id of the plot--do not change
@@ -35,14 +38,16 @@ class PRMetrics(tf.keras.callbacks.Callback):
 class ConfusionMetrics(tf.keras.callbacks.Callback):
   """ Custom callback to compute metrics at the end of each training epoch"""
   def __init__(self, generator=None, num_log_batches=1):
-    self.generator = generator
+    self.generator = generator.unbatch()
     self.num_batches = num_log_batches
     # store full names of classes
-    self.flat_class_names = [k for k, v in generator.class_indices.items()]
+    self.flat_class_names = [labels for _, labels in generator.unbatch()]
+    # self.flat_class_names = [k for k, v in generator.class_indices.items()]
 
   def on_epoch_end(self, epoch, logs={}):
     # collect validation data and ground truth labels from generator
-    val_data, val_labels = zip(*(self.generator[i] for i in range(self.num_batches)))
+    val_data, val_labels = zip((images, labels) for images, labels in self.generator)
+    # val_data, val_labels = zip(*(self.generator[i] for i in range(self.num_batches)))
     val_data, val_labels = np.vstack(val_data), np.vstack(val_labels)
 
     # use the trained model to generate predictions for the given number
