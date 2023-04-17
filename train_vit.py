@@ -7,39 +7,27 @@ import tensorflow as tf
 import tensorflow_addons as tfa
 from tensorflow import keras
 from tensorflow.keras import layers
+import config
+from datasets import get_datasets
 
 gpu_devices = tf.config.experimental.list_physical_devices('GPU')
 for device in gpu_devices:
     tf.config.experimental.set_memory_growth(device, True)
 
-num_classes = 2
 input_shape = (128, 128, 3)
 
-train_ds = keras.utils.image_dataset_from_directory(
-    directory='/home/smachmeier/data/binary-flow-minp3-dim16-cols8-notls-split/train',
-    labels='inferred',
-    label_mode='int',
-    color_mode='rgb',
-    seed=1337,
-    batch_size=256,
-    image_size=(128, 128))
+train_ds, val_ds, test_ds = get_datasets(
+    path=config.configs["dataset_path"],
+    batch_size=config.configs["batch_size"],
+    image_size=config.configs["image_size"],
+    label_mode="int",
+    shuffle_buffer=config.configs["shuffle_buffer"],
+    num_classes=config.configs["num_classes"]
+)
 
-test_ds = keras.utils.image_dataset_from_directory(
-    directory='/home/smachmeier/data/test-data-flow-minp3-dim16-cols8',
-    labels='inferred',
-    label_mode='int',
-    color_mode='rgb',
-    seed=1337,
-    batch_size=256,
-    image_size=(128, 128))
-
-learning_rate = 0.001
 weight_decay = 0.0001
-batch_size = 256
-num_epochs = 10
-image_size = 128  # We'll resize input images to this size
 patch_size = 16  # Size of the patches to be extract from the input images
-num_patches = (image_size // patch_size) ** 2
+num_patches = (config.configs["image_size"][0] // patch_size) ** 2
 projection_dim = 64
 num_heads = 4
 transformer_units = [
@@ -118,42 +106,45 @@ def create_vit_classifier():
     # Add MLP.
     features = mlp(representation, hidden_units=mlp_head_units, dropout_rate=0.5)
     # Classify outputs.
-    logits = layers.Dense(num_classes)(features)
+    logits = layers.Dense(config.configs["num_classes"])(features)
     # Create the Keras model.
     model = keras.Model(inputs=inputs, outputs=logits)
     return model
 
 def run_experiment(model):
-    optimizer = tfa.optimizers.AdamW(
-        learning_rate=learning_rate, weight_decay=weight_decay
-    )
-
     model.compile(
-        optimizer=optimizer,
+        optimizer=tfa.optimizers.AdamW(
+            learning_rate=config.configs["learning_rate"], weight_decay=weight_decay
+        ),
+        # loss=config.configs["loss"],
         loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
         metrics=[
+            # "accuracy",
             keras.metrics.SparseCategoricalAccuracy(name="accuracy"),
-            keras.metrics.SparseTopKCategoricalAccuracy(5, name="top-5-accuracy"),
+            # keras.metrics.Precision(),
+            # keras.metrics.AUC(),
+            # keras.metrics.Recall(),
         ],
     )
 
-    checkpoint_filepath = "./models/test"
-    checkpoint_callback = keras.callbacks.ModelCheckpoint(
-        checkpoint_filepath,
-        monitor="val_accuracy",
-        save_best_only=True,
-        save_weights_only=True,
-    )
+    callbacks = [
+        keras.callbacks.ModelCheckpoint(
+            config.configs["model_path"].format(config.configs["epochs"]),
+            monitor="val_accuracy",
+            save_best_only=True,
+            save_weights_only=True,
+        )
+    ]
 
     history = model.fit(
         train_ds,
-        batch_size=batch_size,
-        epochs=num_epochs,
-        callbacks=[checkpoint_callback],
-        validation_data=test_ds,
+        batch_size=config.configs["batch_size"],
+        epochs=config.configs["epochs"],
+        callbacks=callbacks,
+        validation_data=val_ds,
     )
 
-    model.load_weights(checkpoint_filepath)
+    model.load_weights(config.configs["model_path"].format(config.configs["epochs"]))
     _, accuracy, top_5_accuracy = model.evaluate(test_ds)
     print(f"Test accuracy: {round(accuracy * 100, 2)}%")
     print(f"Test top 5 accuracy: {round(top_5_accuracy * 100, 2)}%")
@@ -162,4 +153,4 @@ def run_experiment(model):
 
 
 vit_classifier = create_vit_classifier()
-history = run_experiment(vit_classifier)
+# history = run_experiment(vit_classifier)
