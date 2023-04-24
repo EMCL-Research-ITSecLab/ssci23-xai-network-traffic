@@ -7,12 +7,18 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.applications import xception
 
+from train_vit import create_vit_classifier
+
 # Size of the input image
 img_size = (128, 128, 3)
 
-model = keras.models.load_model('results/save_at_2.keras')
+model = keras.models.load_model('results/save_at_1_good_prediction.keras')
 
-img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/benign/2013-12-17_capture1-0497.pcap_processed.png"
+# model = create_vit_classifier()
+# model.load_weights('results/save_at_3_vit.keras')
+
+img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-filtered-by-hash-HEADER-split/test/malware/Weibo-1-0185.pcap_processed.png"
+# img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/benign/2013-12-17_capture1-0497.pcap_processed.png"
 # img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/malware/2014-01-31_capture-win7-0022.pcap_processed.png"
 # img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/malware/2014-01-31_capture-win7-77387.pcap_processed.png"
 
@@ -261,7 +267,7 @@ class GradVisualizer:
         ax[0].set_title("Input")
         ax[1].set_title("Normal gradients")
         ax[2].set_title("Integrated gradients")
-        plt.show()
+        plt.savefig(f"gradient_{clip_above_percentile}.png")
 
 def get_img_array(img_path, size=(128, 128)):
     # `img` is a PIL image of size 299x299
@@ -380,46 +386,45 @@ def random_baseline_integrated_gradients(
     integrated_grads = tf.convert_to_tensor(integrated_grads)
     return tf.reduce_mean(integrated_grads, axis=0)
 
+if __name__ == "__main__":
+    # 1. Convert the image to numpy array
+    img = get_img_array(img_path)
 
-# 1. Convert the image to numpy array
-img = get_img_array(img_path)
+    # 2. Keep a copy of the original image
+    orig_img = np.copy(img[0]).astype(np.uint8)
 
-# 2. Keep a copy of the original image
-orig_img = np.copy(img[0]).astype(np.uint8)
+    # 3. Preprocess the image
+    img_processed = tf.cast(xception.preprocess_input(img), dtype=tf.float32)
 
-# 3. Preprocess the image
-img_processed = tf.cast(xception.preprocess_input(img), dtype=tf.float32)
+    # 4. Get model predictions
+    preds = model.predict(img_processed)
+    top_pred_idx = tf.argmax(preds[0])
+    print("Predicted:", top_pred_idx)
 
-print(model.predict(img))
-# 4. Get model predictions
-preds = model.predict(img_processed)
-top_pred_idx = tf.argmax(preds[0])
-print("Predicted:", preds)
+    # 5. Get the gradients of the last layer for the predicted label
+    grads = get_gradients(img_processed, top_pred_idx=top_pred_idx)
 
-# 5. Get the gradients of the last layer for the predicted label
-grads = get_gradients(img_processed, top_pred_idx=top_pred_idx)
+    # 6. Get the integrated gradients
+    igrads = random_baseline_integrated_gradients(
+        np.copy(orig_img), top_pred_idx=top_pred_idx, num_steps=50, num_runs=2
+    )
 
-# 6. Get the integrated gradients
-igrads = random_baseline_integrated_gradients(
-    np.copy(orig_img), top_pred_idx=top_pred_idx, num_steps=50, num_runs=2
-)
+    # 7. Process the gradients and plot
+    vis = GradVisualizer()
+    vis.visualize(
+        image=orig_img,
+        gradients=grads[0].numpy(),
+        integrated_gradients=igrads.numpy(),
+        clip_above_percentile=99,
+        clip_below_percentile=0,
+    )
 
-# 7. Process the gradients and plot
-vis = GradVisualizer()
-vis.visualize(
-    image=orig_img,
-    gradients=grads[0].numpy(),
-    integrated_gradients=igrads.numpy(),
-    clip_above_percentile=99,
-    clip_below_percentile=0,
-)
-
-vis.visualize(
-    image=orig_img,
-    gradients=grads[0].numpy(),
-    integrated_gradients=igrads.numpy(),
-    clip_above_percentile=95,
-    clip_below_percentile=28,
-    morphological_cleanup=True,
-    outlines=True,
-)
+    vis.visualize(
+        image=orig_img,
+        gradients=grads[0].numpy(),
+        integrated_gradients=igrads.numpy(),
+        clip_above_percentile=95,
+        clip_below_percentile=28,
+        morphological_cleanup=True,
+        outlines=True,
+    )

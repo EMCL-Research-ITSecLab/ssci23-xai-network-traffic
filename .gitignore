@@ -2,6 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
+wandb
+models
+artifacts
+figures
 
 # C extensions
 *.so

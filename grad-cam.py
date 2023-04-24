@@ -6,10 +6,13 @@ import tensorflow as tf
 from IPython.display import Image, display
 from tensorflow import keras
 
-img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/benign/2017-07-03_capture-win2-0008.pcap_processed.png"
+# img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-filtered-by-hash-HEADER-split/test/malware/Weibo-1-0185.pcap_processed.png"
+img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-filtered-by-hash-HEADER-split/test/benign/SMB-1-24869.pcap_processed.png"
 img_size = (128, 128)
+
 preprocess_input = keras.applications.xception.preprocess_input
 decode_predictions = keras.applications.xception.decode_predictions
+
 last_conv_layer_name = "block14_sepconv2_act"
 
 def get_img_array(img_path, size):
@@ -57,26 +60,6 @@ def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index=None
     heatmap = tf.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
     return heatmap.numpy()
 
-# Prepare image
-img_array = preprocess_input(get_img_array(img_path, size=img_size))
-
-# Make model
-model = keras.models.load_model('results/save_at_2.keras')
-
-# Remove last layer's softmax
-model.layers[-1].activation = None
-
-# Print what the top predicted class is
-preds = model.predict(img_array)
-print("Predicted:", preds)
-
-# Generate class activation heatmap
-heatmap = make_gradcam_heatmap(img_array, model, last_conv_layer_name)
-
-# Display heatmap
-# plt.matshow(heatmap)
-# plt.show()
-
 def save_and_display_gradcam(img_path, heatmap, cam_path="cam.jpg", alpha=0.4):
     # Load the original image
     img = keras.preprocessing.image.load_img(img_path)
@@ -105,7 +88,27 @@ def save_and_display_gradcam(img_path, heatmap, cam_path="cam.jpg", alpha=0.4):
     superimposed_img.save(cam_path)
 
     # Display Grad CAM
-    display(Image(cam_path))
+    # display(Image(cam_path))
 
+if __name__ == "__main__":
+    # Prepare image
+    img_array = preprocess_input(get_img_array(img_path, size=img_size))
 
-save_and_display_gradcam(img_path, heatmap)
+    # Make model
+    model = keras.models.load_model('results/save_at_10_binary_good_results.keras')
+
+    # Remove last layer's softmax
+    model.layers[-1].activation = None 
+
+    # Print what the top predicted class is
+    preds = model.predict(img_array)
+    print("Predicted:", preds)
+
+    # Generate class activation heatmap
+    heatmap = make_gradcam_heatmap(img_array, model, last_conv_layer_name)
+
+    # Display heatmap
+    # plt.matshow(heatmap)
+    # plt.show()
+    # plt.savefig("heatmap.png")
+    save_and_display_gradcam(img_path, heatmap)

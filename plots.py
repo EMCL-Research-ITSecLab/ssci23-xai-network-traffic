@@ -1,8 +1,13 @@
 import matplotlib.pyplot as plt
+import tensorflow as tf
+import numpy as np
+
+from train_vit import Patches
 
 
-def plot_images(dataset):
-    # TODO: Convert data to np array
+def plot_images(dataset, image_size, patch_size):
+    x_train = [x for x, labels in dataset.unbatch()]
+    x_train = np.array(x_train)
 
     plt.figure(figsize=(4, 4))
     image = x_train[np.random.choice(range(x_train.shape[0]))]
@@ -24,7 +29,7 @@ def plot_images(dataset):
     plt.figure(figsize=(4, 4))
     for i, patch in enumerate(patches[0]):
         ax = plt.subplot(n, n, i + 1)
-        patch_img = tf.reshape(patch, (patch_size, patch_size, 1))
+        patch_img = tf.reshape(patch, (patch_size, patch_size, 3))
         plt.imshow(patch_img.numpy().astype("uint8"))
         plt.axis("off")
     plt.savefig("patches.png")

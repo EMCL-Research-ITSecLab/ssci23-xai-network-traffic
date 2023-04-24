@@ -7,27 +7,22 @@ import tensorflow as tf
 import tensorflow_addons as tfa
 from tensorflow import keras
 from tensorflow.keras import layers
+
 import config
 from datasets import get_datasets
 
-gpu_devices = tf.config.experimental.list_physical_devices('GPU')
-for device in gpu_devices:
-    tf.config.experimental.set_memory_growth(device, True)
-
-input_shape = (128, 128, 3)
-
 train_ds, val_ds, test_ds = get_datasets(
-    path=config.configs["dataset_path"],
-    batch_size=config.configs["batch_size"],
-    image_size=config.configs["image_size"],
+    path=config.config_binary_vit["dataset_path"],
+    batch_size=config.config_binary_vit["batch_size"],
+    image_size=config.config_binary_vit["image_size"],
     label_mode="int",
-    shuffle_buffer=config.configs["shuffle_buffer"],
-    num_classes=config.configs["num_classes"]
+    shuffle_buffer=config.config_binary_vit["shuffle_buffer"],
+    num_classes=config.config_binary_vit["num_classes"]
 )
 
 weight_decay = 0.0001
 patch_size = 16  # Size of the patches to be extract from the input images
-num_patches = (config.configs["image_size"][0] // patch_size) ** 2
+num_patches = (config.config_binary_vit["image_size"][0] // patch_size) ** 2
 projection_dim = 64
 num_heads = 4
 transformer_units = [
@@ -76,7 +71,7 @@ def mlp(x, hidden_units, dropout_rate):
     return x
 
 def create_vit_classifier():
-    inputs = layers.Input(shape=input_shape)
+    inputs = layers.Input(shape=config.config_binary_vit["image_size"] + (config.config_binary_vit["image_channels"],))
     # Create patches.
     patches = Patches(patch_size)(inputs)
     # Encode patches.
@@ -106,7 +101,7 @@ def create_vit_classifier():
     # Add MLP.
     features = mlp(representation, hidden_units=mlp_head_units, dropout_rate=0.5)
     # Classify outputs.
-    logits = layers.Dense(config.configs["num_classes"])(features)
+    logits = layers.Dense(config.config_binary_vit["num_classes"])(features)
     # Create the Keras model.
     model = keras.Model(inputs=inputs, outputs=logits)
     return model
@@ -114,9 +109,9 @@ def create_vit_classifier():
 def run_experiment(model):
     model.compile(
         optimizer=tfa.optimizers.AdamW(
-            learning_rate=config.configs["learning_rate"], weight_decay=weight_decay
+            learning_rate=config.config_binary_vit["learning_rate"], weight_decay=weight_decay
         ),
-        # loss=config.configs["loss"],
+        # loss=config.config_binary_vit["loss"],
         loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
         metrics=[
             # "accuracy",
@@ -129,7 +124,7 @@ def run_experiment(model):
 
     callbacks = [
         keras.callbacks.ModelCheckpoint(
-            config.configs["model_path"].format(config.configs["epochs"]),
+            config.config_binary_vit["model_path"].format(config.config_binary_vit["epochs"]),
             monitor="val_accuracy",
             save_best_only=True,
             save_weights_only=True,
@@ -138,19 +133,19 @@ def run_experiment(model):
 
     history = model.fit(
         train_ds,
-        batch_size=config.configs["batch_size"],
-        epochs=config.configs["epochs"],
+        batch_size=config.config_binary_vit["batch_size"],
+        epochs=config.config_binary_vit["epochs"],
         callbacks=callbacks,
         validation_data=val_ds,
     )
 
-    model.load_weights(config.configs["model_path"].format(config.configs["epochs"]))
+    model.load_weights(config.config_binary_vit["model_path"].format(config.config_binary_vit["epochs"]))
     _, accuracy, top_5_accuracy = model.evaluate(test_ds)
     print(f"Test accuracy: {round(accuracy * 100, 2)}%")
     print(f"Test top 5 accuracy: {round(top_5_accuracy * 100, 2)}%")
 
     return history
 
-
-vit_classifier = create_vit_classifier()
-# history = run_experiment(vit_classifier)
+if __name__ == "__main__":
+    vit_classifier = create_vit_classifier()
+    history = run_experiment(vit_classifier)
