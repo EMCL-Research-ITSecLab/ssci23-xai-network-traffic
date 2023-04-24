@@ -13,7 +13,7 @@ def plot_images(dataset, image_size, patch_size):
     image = x_train[np.random.choice(range(x_train.shape[0]))]
     plt.imshow(image.astype("uint8"))
     plt.axis("off")
-    plt.savefig("patches2.png")
+    plt.savefig("figures/unpatched_image.png")
 
     resized_image = tf.image.resize(
         tf.convert_to_tensor([image]), size=(image_size, image_size)
@@ -32,7 +32,7 @@ def plot_images(dataset, image_size, patch_size):
         patch_img = tf.reshape(patch, (patch_size, patch_size, 3))
         plt.imshow(patch_img.numpy().astype("uint8"))
         plt.axis("off")
-    plt.savefig("patches.png")
+    plt.savefig("figures/patched_image.png")
 
 def plot_roc_curve(history):
     plt.plot([0, 1], [0, 1], 'k--')

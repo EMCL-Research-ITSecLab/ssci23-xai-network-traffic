@@ -279,7 +279,6 @@ def get_img_array(img_path, size=(128, 128)):
     array = np.expand_dims(array, axis=0)
     return array
 
-
 def get_gradients(img_input, top_pred_idx):
     """Computes the gradients of outputs w.r.t input image.
 
@@ -299,7 +298,6 @@ def get_gradients(img_input, top_pred_idx):
 
     grads = tape.gradient(top_class, images)
     return grads
-
 
 def get_integrated_gradients(img_input, top_pred_idx, baseline=None, num_steps=50):
     """Computes Integrated Gradients for a predicted label.
@@ -349,7 +347,6 @@ def get_integrated_gradients(img_input, top_pred_idx, baseline=None, num_steps=5
     # 5. Calculate integrated gradients and return
     integrated_grads = (img_input - baseline) * avg_grads
     return integrated_grads
-
 
 def random_baseline_integrated_gradients(
     img_input, top_pred_idx, num_steps=50, num_runs=2

@@ -12,7 +12,7 @@ import plots
 model = keras.models.load_model('results/save_at_10_binary_good_results.keras')
 
 val_ds = keras.utils.image_dataset_from_directory(
-    directory="/home/smachmeier/data/binary-flow-minp0-dim16-cols8-ALL-NONE-split-fixed",
+    directory="/home/smachmeier/data/binary-flow-minp0-dim16-cols8-ALL-NONE-split-fixed/test",
     labels="inferred",
     label_mode=config.config_binary_cnn["label_mode"],
     color_mode="rgb",
