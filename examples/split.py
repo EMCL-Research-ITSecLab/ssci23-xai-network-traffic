@@ -76,7 +76,7 @@ def remove_duplicates(directory):
             hashes_file[digest] = filename
         else:
             os.remove(hashes_file.get(digest))
-            os.remove(path)
+            # os.remove(path)
 
 
 if __name__ == "__main__":

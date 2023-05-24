@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
-import tensorflow as tf
 import numpy as np
+import tensorflow as tf
 
 from train_vit import Patches
 

@@ -1,10 +1,7 @@
-import tensorflow as tf
 from tensorflow import keras
 
 
 def get_datasets(path, batch_size, image_size, label_mode, shuffle_buffer, num_classes, labels="inferred", color_mode="rgb"):
-    AUTOTUNE = tf.data.AUTOTUNE
-
     train_ds = keras.utils.image_dataset_from_directory(
         directory=f"{path}/train",
         labels=labels,

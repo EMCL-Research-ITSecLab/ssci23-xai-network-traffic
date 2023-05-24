@@ -14,20 +14,6 @@ Install `requirements.txt`
 pip install -r requirements.txt
 ```
 
-Convert images:
-
-```sh
-pip install fip
-
-fip extract flow-tiled-fixed -t 32 -r {PATH_PCAPS} -w {PATH_IMAGES} --min-packets 3 --dim 16 --cols 8
-```
-
-Split dataset to fixed train, test, and validation dataset. We could also use k-cross fold validation, however, for comparability we decided on a fixed split of our dataset.
-
-```sh
-python split.py split fixed/ratio ...
-```
-
 Start training:
 
 ```sh

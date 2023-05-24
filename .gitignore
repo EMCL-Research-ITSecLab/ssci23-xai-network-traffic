@@ -6,6 +6,7 @@ wandb
 models
 artifacts
 figures
+.vscode
 
 # C extensions
 *.so

@@ -4,20 +4,20 @@ import tensorflow as tf
 from IPython.display import Image
 from scipy import ndimage
 from tensorflow import keras
-from tensorflow.keras import layers
-from tensorflow.keras.applications import xception
+from keras import layers
+from keras.applications import xception
 
 from train_vit import create_vit_classifier
 
 # Size of the input image
 img_size = (128, 128, 3)
 
-model = keras.models.load_model('results/save_at_1_good_prediction.keras')
+model = keras.models.load_model('results/save_at_1_binary_cnn_binary-flow-minp2-dim16-cols8-ALL-HEADER-split-fixed.keras')
 
 # model = create_vit_classifier()
 # model.load_weights('results/save_at_3_vit.keras')
 
-img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-filtered-by-hash-HEADER-split/test/malware/Weibo-1-0185.pcap_processed.png"
+img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-HEADER/malware/Weibo-1-0185.pcap_processed.png"
 # img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/benign/2013-12-17_capture1-0497.pcap_processed.png"
 # img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/malware/2014-01-31_capture-win7-0022.pcap_processed.png"
 # img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/malware/2014-01-31_capture-win7-77387.pcap_processed.png"
@@ -111,6 +111,7 @@ class GradVisualizer:
     ):
         # 1. Binarize the attributions.
         attributions = self.binarize(attributions)
+        print(attributions)
 
         # 2. Fill the gaps
         attributions = ndimage.binary_fill_holes(attributions)
@@ -267,7 +268,7 @@ class GradVisualizer:
         ax[0].set_title("Input")
         ax[1].set_title("Normal gradients")
         ax[2].set_title("Integrated gradients")
-        plt.savefig(f"gradient_{clip_above_percentile}.png")
+        plt.savefig(f"gradient_{clip_above_percentile}.pdf")
 
 def get_img_array(img_path, size=(128, 128)):
     # `img` is a PIL image of size 299x299
@@ -294,6 +295,10 @@ def get_gradients(img_input, top_pred_idx):
     with tf.GradientTape() as tape:
         tape.watch(images)
         preds = model(images)
+        # print(images.shape)
+        # pil_img = tf.keras.utils.array_to_img(images[0])
+        # pil_img.save(f"image_at_{preds[0]}.png")
+        # print(preds)
         top_class = preds[:, top_pred_idx]
 
     grads = tape.gradient(top_class, images)
@@ -386,6 +391,8 @@ def random_baseline_integrated_gradients(
 if __name__ == "__main__":
     # 1. Convert the image to numpy array
     img = get_img_array(img_path)
+    # img = keras.preprocessing.image.load_img(img_path, target_size=(128, 128))
+    # array = keras.preprocessing.image.img_to_array(img)
 
     # 2. Keep a copy of the original image
     orig_img = np.copy(img[0]).astype(np.uint8)
@@ -394,7 +401,12 @@ if __name__ == "__main__":
     img_processed = tf.cast(xception.preprocess_input(img), dtype=tf.float32)
 
     # 4. Get model predictions
+    
+    # print(array.shape)
+    # array = np.expand_dims(array, axis=0)
+    # model.summary()
     preds = model.predict(img_processed)
+    print(preds)
     top_pred_idx = tf.argmax(preds[0])
     print("Predicted:", top_pred_idx)
 

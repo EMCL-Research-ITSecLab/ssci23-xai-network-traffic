@@ -1,10 +1,9 @@
 # Weights and Biases related imports
 import numpy as np
 import tensorflow as tf
+import wandb
 from tensorflow import keras
 from wandb.keras import WandbEvalCallback
-
-import wandb
 
 
 class WeightedCategoricalCrossentropy(keras.losses.CategoricalCrossentropy):

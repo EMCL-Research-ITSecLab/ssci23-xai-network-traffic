@@ -7,7 +7,7 @@ from IPython.display import Image, display
 from tensorflow import keras
 
 # img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-filtered-by-hash-HEADER-split/test/malware/Weibo-1-0185.pcap_processed.png"
-img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-filtered-by-hash-HEADER-split/test/benign/SMB-1-24869.pcap_processed.png"
+img_path ="/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-HEADER/malware/Weibo-1-0185.pcap_processed.png"
 img_size = (128, 128)
 
 preprocess_input = keras.applications.xception.preprocess_input
@@ -24,7 +24,6 @@ def get_img_array(img_path, size):
     # of size (1, 299, 299, 3)
     array = np.expand_dims(array, axis=0)
     return array
-
 
 def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index=None):
     # First, we create a model that maps the input image to the activations
@@ -95,7 +94,7 @@ if __name__ == "__main__":
     img_array = preprocess_input(get_img_array(img_path, size=img_size))
 
     # Make model
-    model = keras.models.load_model('results/save_at_10_binary_good_results.keras')
+    model = keras.models.load_model('results/save_at_1_binary_cnn_binary-flow-minp2-dim16-cols8-ALL-HEADER-split-fixed.keras')
 
     # Remove last layer's softmax
     model.layers[-1].activation = None 
