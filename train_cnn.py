@@ -1,6 +1,9 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 import wandb
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
+from sklearn.metrics import precision_recall_fscore_support as score
 from sklearn.utils import class_weight
 from tensorflow import keras
 from wandb.keras import WandbEvalCallback, WandbMetricsLogger, WandbModelCheckpoint
@@ -8,10 +11,10 @@ from wandb.keras import WandbEvalCallback, WandbMetricsLogger, WandbModelCheckpo
 import config
 from datasets import get_datasets
 from metrics import PRMetrics, WandbClfEvalCallback
-from models import xception_model, vgg19_model
+from models import vgg19_model, xception_model
 
 if __name__ == "__main__":
-    current_config = config.config_multiclass_cnn
+    current_config = config.config_binary_cnn
 
     if current_config["wandb_active"]:
         wandb.login()
@@ -47,14 +50,23 @@ if __name__ == "__main__":
         keras.utils.plot_model(model, to_file="figures/model.pdf", show_shapes=True)
 
     callbacks = [
-        keras.callbacks.EarlyStopping(monitor="loss", patience=3),
+        keras.callbacks.EarlyStopping(monitor="loss", patience=2),
         keras.callbacks.ModelCheckpoint(
-            filepath=current_config["model_path"].format(current_config["epochs"])
+            filepath=current_config["model_path"].format(current_config["epochs"]),
+            save_weights_only=True,
+            monitor="val_accuracy",
+            mode="max",
+            save_best_only=True,
         ),
         keras.callbacks.CSVLogger(
-            current_config["csv_path"], separator=",", append=False
+            current_config["csv_path"].format(current_config["epochs"]),
+            separator=",",
+            append=False,
         ),
-        keras.callbacks.TensorBoard("./results/logs", update_freq=1),
+        keras.callbacks.TensorBoard(
+            current_config["tensorboard_path"].format(current_config["epochs"]),
+            update_freq=1,
+        ),
     ]
 
     if current_config["wandb_active"]:
@@ -77,58 +89,106 @@ if __name__ == "__main__":
         callbacks.append(wandb_callback)
 
     # Class Weights for imbalanced data set
-    # ds_labels = [int(labels.numpy()[0]) for _, labels in train_ds.unbatch()] # For Binary Classification
-    ds_labels = [int(np.argmax(labels.numpy())) for _, labels in train_ds.unbatch()]
-    # print(f"Labes: {ds_labels}")
+    ds_labels = [
+        int(labels.numpy()[0]) for _, labels in train_ds.unbatch()
+    ]  # For Binary Classification
+    # ds_labels = [int(np.argmax(labels.numpy())) for _, labels in train_ds.unbatch()]
 
     class_weights = class_weight.compute_class_weight(
         class_weight="balanced",
-        classes=[i for i in range(0, current_config["num_classes"])],
+        # classes=[i for i in range(0, current_config["num_classes"])], # for multiclass
+        classes=[i for i in range(0, current_config["num_classes"] + 1)],
         y=ds_labels,
     )
     print(f"Class weights are {class_weights}")
 
-    # class_dict = {0: class_weights[0], 1: class_weights[1]}
     class_dict = {}
     for index, classw in enumerate(class_weights):
         class_dict[index] = classw
     print(f"Class dict are {class_dict}")
 
     model.compile(
-        optimizer=keras.optimizers.Adam(current_config["learning_rate"]),
+        optimizer=keras.optimizers.SGD(current_config["learning_rate"]),
         loss=current_config["loss"],
         metrics=[
             "accuracy",
-            # keras.metrics.Precision(),
+            keras.metrics.Precision(),
+            keras.metrics.Recall(),
             keras.metrics.AUC(
                 multi_label=True, num_labels=current_config["num_classes"]
-            )
-            # keras.metrics.Recall(),
+            ),
         ],
     )
     if current_config["print_model"]:
         model.summary()
 
-    history = model.fit(
-        train_ds,
-        epochs=current_config["epochs"],
-        callbacks=callbacks,
-        validation_data=val_ds,
-        validation_steps=1,
-        class_weight=class_dict,
-    )
+    # history = model.fit(
+    #     train_ds,
+    #     epochs=current_config["epochs"],
+    #     callbacks=callbacks,
+    #     validation_data=val_ds,
+    #     validation_steps=1,
+    #     class_weight=class_dict,
+    # )
 
-    np.save(
-        current_config["history_path"].format(current_config["epochs"]),
-        history.history,
-    )
+    # np.save(
+    #     current_config["history_path"].format(current_config["epochs"]),
+    #     history.history,
+    # )
 
-    model = keras.models.load_model(
-        current_config["model_path"].format(current_config["epochs"])
-    )
+    # model = keras.models.load_model(
+    #     # current_config["model_path"].format(current_config["epochs"])
+    #     "./results/checkpoint"
+    # )
+
+    model.load_weights(current_config["model_path"].format(current_config["epochs"]))
 
     print("Model evaluation:")
-    model.evaluate(test_ds)
+    # model.evaluate(test_ds)
+
+    x_test=[]
+    y_test=[]
+    for images, labels in test_ds.unbatch():
+        y_test.append(labels.numpy()) # or labels.numpy().argmax() for int labels
+        x_test.append(images) # or labels.numpy().argmax() for int labels
+
+    x_test = np.array(x_test)
+    y_test = np.array(y_test)
+    # Get Y prediction
+    y_pred = model.predict(x_test)
+
+    # y_pred = y_pred.argmax(axis=-1) # for multiclass
+    y_pred = np.round(y_pred)
+    y_pred = y_pred.reshape(-1).astype(int)
+
+    print(y_test.shape)
+    print(y_pred.shape)
+
+    print(y_test)
+    print(y_pred)
+
+    # Confusion matrix
+    cm = confusion_matrix(y_test, y_pred, normalize='all')
+    # df_cm = pd.DataFrame(cm, range(current_config["num_classes"]), range(current_config["num_classes"])) # for multiclass
+    # df_cm = pd.DataFrame(
+    #     cm,
+    #     range(current_config["num_classes"] + 1),
+    #     range(current_config["num_classes"] + 1),
+    # )
+    cmd = ConfusionMatrixDisplay(cm, display_labels=['Benign','Malware'])
+    cmd.plot()
+    cmd.ax_.set(xlabel='Predicted', ylabel='True')
+    # sn.set(font_scale=1.4)  # for label size
+    # sn.heatmap(df_cm, annot=True, annot_kws={"size": 8})  # font size
+    plt.savefig("test.jpg")
+
+    # Scores
+    precision, recall, fscore, support = score(y_test, y_pred)
+
+    print("precision: {}".format(precision))
+    print("recall: {}".format(recall))
+    print("fscore: {}".format(fscore))
+    print("support: {}".format(support))
 
     if current_config["wandb_active"]:
         # Close the W&B run

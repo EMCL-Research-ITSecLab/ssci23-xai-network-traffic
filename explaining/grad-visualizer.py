@@ -2,10 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 from IPython.display import Image
-from scipy import ndimage
-from tensorflow import keras
 from keras import layers
 from keras.applications import xception
+from scipy import ndimage
+from tensorflow import keras
 
 from train_vit import create_vit_classifier
 
