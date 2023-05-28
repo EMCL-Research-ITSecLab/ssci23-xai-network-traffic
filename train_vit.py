@@ -1,12 +1,16 @@
-from tensorflow import keras
 import wandb
-
+from tensorflow import keras
+import numpy as np
+from sklearn.utils import class_weight
 import config
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
+from sklearn.metrics import precision_recall_fscore_support
+import matplotlib.pyplot as plt
 from datasets import get_datasets
 from models import vit
 
 if __name__ == "__main__":
-    current_config = config.config_binary_vit
+    current_config = config.config_multiclass_vit
 
     weight_decay = 0.0001
 
@@ -14,57 +18,154 @@ if __name__ == "__main__":
         wandb.login()
 
     train_ds, val_ds, test_ds = get_datasets(
-        path=config.config_binary_vit["dataset_path"],
-        batch_size=config.config_binary_vit["batch_size"],
-        image_size=config.config_binary_vit["image_size"],
-        label_mode="int",
-        shuffle_buffer=config.config_binary_vit["shuffle_buffer"],
-        num_classes=config.config_binary_vit["num_classes"],
+        path=current_config["dataset_path"],
+        batch_size=current_config["batch_size"],
+        image_size=current_config["image_size"],
+        label_mode=current_config["label_mode"],
+        shuffle_buffer=current_config["shuffle_buffer"],
+        num_classes=current_config["num_classes"],
     )
 
     model = vit(current_config)
 
     model.compile(
         optimizer=keras.optimizers.SGD(
-            learning_rate=config.config_binary_vit["learning_rate"],
+            learning_rate=current_config["learning_rate"],
             weight_decay=weight_decay,
         ),
-        # loss=config.config_binary_vit["loss"],
-        loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+        loss=current_config["loss"],
         metrics=[
-            # "accuracy",
-            keras.metrics.SparseCategoricalAccuracy(name="accuracy"),
+            # keras.metrics.Accuracy(),
             # keras.metrics.Precision(),
-            # keras.metrics.AUC(),
             # keras.metrics.Recall(),
+            # keras.metrics.AUC(
+            #     multi_label=True, num_labels=current_config["num_classes"]
+            # ),
+            keras.metrics.SparseCategoricalAccuracy(name="accuracy"),
+            keras.metrics.SparseTopKCategoricalAccuracy(5, name="top-5-accuracy"),
         ],
     )
 
     callbacks = [
+        keras.callbacks.EarlyStopping(monitor="loss", patience=current_config["earlystopping_patience"]),
         keras.callbacks.ModelCheckpoint(
-            config.config_binary_vit["model_path"].format(
-                config.config_binary_vit["epochs"]
-            ),
-            monitor="val_accuracy",
-            save_best_only=True,
+            filepath=current_config["model_path"].format(current_config["epochs"]),
             save_weights_only=True,
-        )
+            monitor="val_accuracy",
+            mode="max",
+            save_best_only=True,
+        ),
+        keras.callbacks.TensorBoard(
+            current_config["tensorboard_path"].format(current_config["epochs"]),
+            update_freq=1,
+        ),
     ]
 
-    history = model.fit(
-        train_ds,
-        batch_size=config.config_binary_vit["batch_size"],
-        epochs=config.config_binary_vit["epochs"],
-        callbacks=callbacks,
-        validation_data=val_ds,
-    )
+    if current_config["type"] == "BINARY":
+        # Class Weights for imbalanced data set
+        ds_labels = [int(labels.numpy()) for _, labels in train_ds.unbatch()]
+        class_weights = class_weight.compute_class_weight(
+            class_weight="balanced",
+            classes=[i for i in range(0, current_config["num_classes"])],
+            y=ds_labels,
+        )
+    else:
+        ds_labels = [int(labels.numpy()) for _, labels in train_ds.unbatch()]
+        class_weights = class_weight.compute_class_weight(
+            class_weight="balanced",
+            classes=[
+                i for i in range(0, current_config["num_classes"])
+            ],
+            y=ds_labels,
+        )
+
+    print(f"Class weights are {class_weights}")
+    class_dict = {}
+    for index, classw in enumerate(class_weights):
+        class_dict[index] = classw
+    print(f"Class dict are {class_dict}")
+
+    # history = model.fit(
+    #     train_ds,
+    #     batch_size=current_config["batch_size"],
+    #     epochs=current_config["epochs"],
+    #     callbacks=callbacks,
+    #     validation_data=val_ds,
+    #     validation_steps=1,
+    #     class_weight=class_dict,
+    # )
 
     model.load_weights(
-        config.config_binary_vit["model_path"].format(
-            config.config_binary_vit["epochs"]
+        current_config["model_path"].format(
+            current_config["epochs"]
         )
     )
 
-    _, accuracy, top_5_accuracy = model.evaluate(test_ds)
-    print(f"Test accuracy: {round(accuracy * 100, 2)}%")
-    print(f"Test top 5 accuracy: {round(top_5_accuracy * 100, 2)}%")
+    print("Model evaluation:")
+    model.evaluate(test_ds)
+
+    # Important: Unbatching is necessary to get the correct order of images and labels
+    x_test = []
+    y_test = []
+    for images, labels in test_ds.unbatch():
+        y_test.append(labels.numpy())
+        x_test.append(images)
+
+    x_test = np.array(x_test)
+    y_test = np.array(y_test)
+
+    # Get Y prediction
+    y_pred = model.predict(x_test)
+
+    print(f"Y test has shape {y_test.shape}")
+    print(f"Y pred has shape {y_pred.shape}")
+
+    if current_config["type"] == "BINARY":
+        y_pred = y_pred.argmax(axis=-1)
+
+        dispaly_labels = display_labels = ["Benign", "Malware"]
+    else:
+        y_pred = y_pred.argmax(axis=-1)
+        #y_test = y_test.argmax(axis=-1)
+
+        dispaly_labels = [
+            "BitTorrent",
+            "Cridex",
+            "FTP",
+            "Geodo",
+            "Gmail",
+            "Htbot",
+            "Miuref",
+            "MySQL",
+            "Neris",
+            "Nsis-ay",
+            "Outlook",
+            "Shifu",
+            "Skype",
+            "SMB",
+            "Tinba",
+            "Virut",
+            "Weibo",
+            "WorldOfWarcraft",
+            "Zeus",
+        ]
+        print(f"Y test has values {y_test[5]}")
+        print(f"Y pred has values {y_pred[5]}")
+
+    # print(f"Y test has values {y_test[:5]}")
+    # print(f"Y pred has values {y_pred[:5]}")
+    # Confusion matrix
+    cm = confusion_matrix(y_test, y_pred, normalize="all")
+    cmd = ConfusionMatrixDisplay(cm, display_labels=dispaly_labels)
+    cmd.plot()
+    cmd.ax_.set(xlabel="Predicted", ylabel="True")
+    plt.savefig("test222.jpg")
+
+    # Scores
+    precision, recall, fscore, support = precision_recall_fscore_support(y_test, y_pred)
+
+    print("precision: {}".format(precision))
+    print("recall: {}".format(recall))
+    print("fscore: {}".format(fscore))
+    print("support: {}".format(support))
+

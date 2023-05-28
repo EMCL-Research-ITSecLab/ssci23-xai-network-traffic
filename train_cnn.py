@@ -1,12 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
+import tensorrt
 import wandb
 from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
-from sklearn.metrics import precision_recall_fscore_support as score
+from sklearn.metrics import precision_recall_fscore_support
 from sklearn.utils import class_weight
 from tensorflow import keras
-from wandb.keras import WandbEvalCallback, WandbMetricsLogger, WandbModelCheckpoint
+from wandb.keras import (WandbEvalCallback, WandbMetricsLogger,
+                         WandbModelCheckpoint)
 
 import config
 from datasets import get_datasets
@@ -55,7 +57,7 @@ if __name__ == "__main__":
         )
 
     callbacks = [
-        keras.callbacks.EarlyStopping(monitor="loss", patience=2),
+        keras.callbacks.EarlyStopping(monitor="loss", patience=current_config["earlystopping_patience"]),
         keras.callbacks.ModelCheckpoint(
             filepath=current_config["model_path"].format(current_config["epochs"]),
             save_weights_only=True,
@@ -108,7 +110,7 @@ if __name__ == "__main__":
             class_weight="balanced",
             classes=[
                 i for i in range(0, current_config["num_classes"])
-            ],  # for multiclass
+            ],
             y=ds_labels,
         )
 
@@ -122,7 +124,7 @@ if __name__ == "__main__":
         optimizer=keras.optimizers.SGD(current_config["learning_rate"]),
         loss=current_config["loss"],
         metrics=[
-            "accuracy",
+            keras.metrics.Accuracy(),
             keras.metrics.Precision(),
             keras.metrics.Recall(),
             keras.metrics.AUC(
@@ -130,26 +132,26 @@ if __name__ == "__main__":
             ),
         ],
     )
-    if current_config["print_model"]:
-        model.summary()
+    # if current_config["print_model"]:
+    #     model.summary()
 
-    history = model.fit(
-        train_ds,
-        epochs=current_config["epochs"],
-        callbacks=callbacks,
-        validation_data=val_ds,
-        validation_steps=1,
-        class_weight=class_dict,
-    )
+    # history = model.fit(
+    #     train_ds,
+    #     epochs=current_config["epochs"],
+    #     callbacks=callbacks,
+    #     validation_data=val_ds,
+    #     validation_steps=1,
+    #     class_weight=class_dict,
+    # )
 
-    if current_config["wandb_active"]:
-        # Close the W&B run
-        run.finish()
+    # if current_config["wandb_active"]:
+    #     # Close the W&B run
+    #     run.finish()
 
-    np.save(
-        current_config["history_path"].format(current_config["epochs"]),
-        history.history,
-    )
+    # np.save(
+    #     current_config["history_path"].format(current_config["epochs"]),
+    #     history.history,
+    # )
 
     #################################################################################
     ## EVALUATE
@@ -182,7 +184,8 @@ if __name__ == "__main__":
 
         dispaly_labels = display_labels = ["Benign", "Malware"]
     else:
-        y_pred = y_pred.argmax(axis=-1)  # for multiclass
+        y_pred = y_pred.argmax(axis=-1)
+        y_test = y_test.argmax(axis=-1)
 
         dispaly_labels = [
             "BitTorrent",
@@ -206,6 +209,8 @@ if __name__ == "__main__":
             "Zeus",
         ]
 
+    print(f"Y test has values {y_test[5]}")
+    print(f"Y pred has values {y_pred[5]}")
     # Confusion matrix
     cm = confusion_matrix(y_test, y_pred, normalize="all")
     cmd = ConfusionMatrixDisplay(cm, display_labels=dispaly_labels)
@@ -214,7 +219,7 @@ if __name__ == "__main__":
     plt.savefig("test2.jpg")
 
     # Scores
-    precision, recall, fscore, support = score(y_test, y_pred)
+    precision, recall, fscore, support = precision_recall_fscore_support(y_test, y_pred)
 
     print("precision: {}".format(precision))
     print("recall: {}".format(recall))

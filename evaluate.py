@@ -1,6 +1,7 @@
 from tensorflow import keras
 
 import config
+
 # import plots
 
 if __name__ == "__main__":
