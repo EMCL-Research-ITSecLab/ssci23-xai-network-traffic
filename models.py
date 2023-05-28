@@ -21,6 +21,7 @@ def xception_model(image_size, classes=2, activation="softmax"):
         classifier_activation=activation,
     )
 
+
 class Patches(layers.Layer):
     def __init__(self, patch_size):
         super().__init__()
@@ -39,6 +40,7 @@ class Patches(layers.Layer):
         patches = tf.reshape(patches, [batch_size, -1, patch_dims])
         return patches
 
+
 class PatchEncoder(layers.Layer):
     def __init__(self, num_patches, projection_dim):
         super().__init__()
@@ -53,14 +55,15 @@ class PatchEncoder(layers.Layer):
         encoded = self.projection(patch) + self.position_embedding(positions)
         return encoded
 
+
 def mlp(x, hidden_units, dropout_rate):
     for units in hidden_units:
         x = layers.Dense(units, activation=tf.nn.gelu)(x)
         x = layers.Dropout(dropout_rate)(x)
     return x
 
+
 def vit(config):
-    
     patch_size = 16  # Size of the patches to be extract from the input images
     num_patches = (config["image_size"][0] // patch_size) ** 2
     projection_dim = 64
