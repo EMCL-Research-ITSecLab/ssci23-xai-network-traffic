@@ -8,9 +8,7 @@
 source /usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/etc/profile.d/conda.sh
 
 conda create --name ssci
-conda activate cnn
+conda activate ssci
 
 pip install -r requirements.txt
 python train_cnn.py
-
-conda env remove -n cnn
