@@ -5,7 +5,7 @@ import numpy as np
 import tensorflow as tf
 import wandb
 from sklearn.metrics import (ConfusionMatrixDisplay, confusion_matrix,
-                             precision_recall_fscore_support)
+                             precision_recall_fscore_support, classification_report, accuracy_score)
 from sklearn.utils import class_weight
 from tensorflow import keras
 from wandb.keras import (WandbEvalCallback, WandbMetricsLogger,
@@ -241,9 +241,14 @@ if __name__ == "__main__":
     plt.savefig(current_config["model_path"].format(current_config["epochs"]) + ".pdf")
 
     # Scores
-    precision, recall, fscore, support = precision_recall_fscore_support(y_test, y_pred)
+    # precision, recall, fscore, support = precision_recall_fscore_support(y_test, y_pred)
 
-    print("precision: {}".format(precision))
-    print("recall: {}".format(recall))
-    print("fscore: {}".format(fscore))
-    print("support: {}".format(support))
+    # print("precision: {}".format(precision))
+    # print("recall: {}".format(recall))
+    # print("fscore: {}".format(fscore))
+    # print("support: {}".format(support))
+
+    print(classification_report(y_test, y_pred, target_names=dispaly_labels))
+
+    # print("Accuracy Score:")
+    # print(accuracy_score(y_test, y_pred))

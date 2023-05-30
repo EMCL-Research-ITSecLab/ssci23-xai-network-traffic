@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import wandb
 from sklearn.metrics import (ConfusionMatrixDisplay, confusion_matrix,
-                             precision_recall_fscore_support)
+                             precision_recall_fscore_support, classification_report, accuracy_score)
 from sklearn.utils import class_weight
 from tensorflow import keras
 import tensorflow as tf
@@ -101,21 +101,23 @@ if __name__ == "__main__":
         class_dict[index] = classw
     print(f"Class dict are {class_dict}")
 
-    history = model.fit(
-        train_ds,
-        batch_size=current_config["batch_size"],
-        epochs=current_config["epochs"],
-        callbacks=callbacks,
-        validation_data=val_ds,
-        validation_steps=1,
-        class_weight=class_dict,
-    )
+    # history = model.fit(
+    #     train_ds,
+    #     batch_size=current_config["batch_size"],
+    #     epochs=current_config["epochs"],
+    #     callbacks=callbacks,
+    #     validation_data=val_ds,
+    #     validation_steps=1,
+    #     class_weight=class_dict,
+    # )
 
-    model.load_weights(
-        current_config["model_path"].format(
-            current_config["epochs"]
-        )
-    )
+    # model.load_weights(
+    #     current_config["model_path"].format(
+    #         current_config["epochs"]
+    #     )
+    # )
+
+    model = keras.models.load_model(current_config["model_path"].format(current_config["epochs"]))
 
     print("Model evaluation:")
     model.evaluate(test_ds)
@@ -142,7 +144,6 @@ if __name__ == "__main__":
         dispaly_labels = display_labels = ["Benign", "Malware"]
     else:
         y_pred = y_pred.argmax(axis=-1)
-        #y_test = y_test.argmax(axis=-1)
 
         dispaly_labels = [
             "BitTorrent",
@@ -177,10 +178,14 @@ if __name__ == "__main__":
     plt.savefig(current_config["model_path"].format(current_config["epochs"]) + ".pdf")
 
     # Scores
-    precision, recall, fscore, support = precision_recall_fscore_support(y_test, y_pred)
+    # precision, recall, fscore, support = precision_recall_fscore_support(y_test, y_pred)
 
-    print("precision: {}".format(precision))
-    print("recall: {}".format(recall))
-    print("fscore: {}".format(fscore))
-    print("support: {}".format(support))
+    # print("precision: {}".format(precision))
+    # print("recall: {}".format(recall))
+    # print("fscore: {}".format(fscore))
+    # print("support: {}".format(support))
 
+    print(classification_report(y_test, y_pred, target_names=dispaly_labels))
+
+    # print("Accuracy Score:")
+    # print(accuracy_score(y_test, y_pred))

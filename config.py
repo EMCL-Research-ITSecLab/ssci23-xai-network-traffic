@@ -14,7 +14,7 @@ config_binary_cnn_vgg19 = dict(
     label_mode="binary",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=25,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/binary-flow-minp2-dim16-cols8-ALL-NONE-split-ratio",
     history_path=DEFAULT_MODEL_PATH
@@ -43,7 +43,7 @@ config_binary_cnn_vgg19_header = dict(
     label_mode="binary",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=25,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/binary-flow-minp2-dim16-cols8-ALL-HEADER-split-ratio",
     history_path=DEFAULT_MODEL_PATH
@@ -72,7 +72,7 @@ config_binary_cnn_xception = dict(
     label_mode="binary",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=25,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/binary-flow-minp2-dim16-cols8-ALL-NONE-split-ratio",
     history_path=DEFAULT_MODEL_PATH
@@ -101,7 +101,7 @@ config_binary_cnn_xception_header = dict(
     label_mode="binary",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=25,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/binary-flow-minp2-dim16-cols8-ALL-HEADER-split-ratio",
     history_path=DEFAULT_MODEL_PATH
@@ -130,7 +130,7 @@ config_multiclass_cnn_vgg19 = dict(
     label_mode="categorical",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=25,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/multiclass-flow-minp2-dim16-cols8-ALL-NONE-split-ratio",
     history_path=DEFAULT_MODEL_PATH
@@ -159,7 +159,7 @@ config_multiclass_cnn_vgg19_header = dict(
     label_mode="categorical",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=25,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/multiclass-flow-minp2-dim16-cols8-ALL-HEADER-split-ratio",
     history_path=DEFAULT_MODEL_PATH
@@ -188,7 +188,7 @@ config_multiclass_cnn_xception = dict(
     label_mode="categorical",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=25,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/multiclass-flow-minp2-dim16-cols8-ALL-NONE-split-ratio",
     history_path=DEFAULT_MODEL_PATH
@@ -217,7 +217,7 @@ config_multiclass_cnn_xception_header = dict(
     label_mode="categorical",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=25,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/multiclass-flow-minp2-dim16-cols8-ALL-HEADER-split-ratio",
     history_path=DEFAULT_MODEL_PATH
@@ -246,7 +246,7 @@ config_binary_vit = dict(
     label_mode="int",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=3,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/binary-flow-minp2-dim16-cols8-ALL-NONE-split-ratio",
     history_path=DEFAULT_MODEL_PATH
@@ -274,7 +274,7 @@ config_binary_vit_header = dict(
     label_mode="int",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=3,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/binary-flow-minp2-dim16-cols8-ALL-HEADER-split-ratio",
     history_path=DEFAULT_MODEL_PATH
@@ -330,7 +330,7 @@ config_multiclass_vit_header = dict(
     label_mode="int",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=3,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/multiclass-flow-minp2-dim16-cols8-ALL-HEADER-split-ratio",
     history_path=DEFAULT_MODEL_PATH
