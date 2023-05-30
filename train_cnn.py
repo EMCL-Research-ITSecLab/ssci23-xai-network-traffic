@@ -16,6 +16,9 @@ from datasets import get_datasets
 from metrics import PRMetrics, WandbClfEvalCallback
 
 if __name__ == "__main__":
+
+    print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+
     args = sys.argv[1:]
     if args[0] == "multiclass_cnn_vgg19":
         current_config = config.config_multiclass_cnn_vgg19

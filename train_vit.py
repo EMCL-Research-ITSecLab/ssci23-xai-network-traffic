@@ -5,12 +5,17 @@ from sklearn.metrics import (ConfusionMatrixDisplay, confusion_matrix,
                              precision_recall_fscore_support)
 from sklearn.utils import class_weight
 from tensorflow import keras
+import tensorflow as tf
+import sys
 
 import config
 from datasets import get_datasets
 from models import vit
 
 if __name__ == "__main__":
+
+    print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+
     args = sys.argv[1:]
     if args[0] == "multiclass_vit":
         current_config = config.config_multiclass_vit
