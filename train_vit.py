@@ -28,6 +28,8 @@ if __name__ == "__main__":
     else:
         raise Exception(f"{args[0]} not defined")
 
+    print(f"Running: {args[0]}")
+
     weight_decay = 0.0001
 
     if current_config["wandb_active"]:
