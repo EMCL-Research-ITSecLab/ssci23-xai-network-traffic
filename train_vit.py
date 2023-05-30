@@ -11,7 +11,13 @@ from datasets import get_datasets
 from models import vit
 
 if __name__ == "__main__":
-    current_config = config.config_multiclass_vit
+    args = sys.argv[1:]
+    if args[0] == "multiclass_vit":
+        current_config = config.config_multiclass_vit
+    elif args[0] == "binary_vit":
+        current_config = config.config_binary_vit
+    else:
+        raise Exception(f"{args[0]} not defined")
 
     weight_decay = 0.0001
 

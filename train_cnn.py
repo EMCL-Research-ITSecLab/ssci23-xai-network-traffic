@@ -14,7 +14,6 @@ from wandb.keras import (WandbEvalCallback, WandbMetricsLogger,
 import config
 from datasets import get_datasets
 from metrics import PRMetrics, WandbClfEvalCallback
-from models import vgg19_model, xception_model
 
 if __name__ == "__main__":
     args = sys.argv[1:]
