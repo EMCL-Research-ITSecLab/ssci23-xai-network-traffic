@@ -1,4 +1,4 @@
-# SSCI - Flow-based Image Traffic Classification
+# SSCI - Session-based Image Traffic Classification
 
 ## Getting Started
 

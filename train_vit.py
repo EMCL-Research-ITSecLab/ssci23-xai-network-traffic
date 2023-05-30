@@ -21,6 +21,10 @@ if __name__ == "__main__":
         current_config = config.config_multiclass_vit
     elif args[0] == "binary_vit":
         current_config = config.config_binary_vit
+    elif args[0] == "multiclass_vit_header":
+        current_config = config.config_multiclass_vit_header
+    elif args[0] == "binary_vit_header":
+        current_config = config.config_binary_vit_header
     else:
         raise Exception(f"{args[0]} not defined")
 
