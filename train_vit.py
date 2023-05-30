@@ -1,11 +1,12 @@
-import wandb
-from tensorflow import keras
-import numpy as np
-from sklearn.utils import class_weight
-import config
-from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
-from sklearn.metrics import precision_recall_fscore_support
 import matplotlib.pyplot as plt
+import numpy as np
+import wandb
+from sklearn.metrics import (ConfusionMatrixDisplay, confusion_matrix,
+                             precision_recall_fscore_support)
+from sklearn.utils import class_weight
+from tensorflow import keras
+
+import config
 from datasets import get_datasets
 from models import vit
 

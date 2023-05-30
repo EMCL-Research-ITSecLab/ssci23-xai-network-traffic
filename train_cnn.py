@@ -1,9 +1,11 @@
+import sys
+
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 import wandb
-from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
-from sklearn.metrics import precision_recall_fscore_support
+from sklearn.metrics import (ConfusionMatrixDisplay, confusion_matrix,
+                             precision_recall_fscore_support)
 from sklearn.utils import class_weight
 from tensorflow import keras
 from wandb.keras import (WandbEvalCallback, WandbMetricsLogger,
@@ -15,7 +17,17 @@ from metrics import PRMetrics, WandbClfEvalCallback
 from models import vgg19_model, xception_model
 
 if __name__ == "__main__":
-    current_config = config.config_multiclass_cnn_vgg19
+    args = sys.argv[1:]
+    if args[0] == "multiclass_cnn_vgg19":
+        current_config = config.config_multiclass_cnn_vgg19
+    elif args[0] == "multiclass_cnn_xception":
+        current_config = config.config_multiclass_cnn_xception
+    elif args[0] == "binary_cnn_xception":
+        current_config = config.config_binary_cnn_xception
+    elif args[0] == "binary_cnn_vgg19":
+        current_config = config.config_binary_cnn_vgg19
+    else:
+        raise Exception(f"{args[0]} not defined")
 
     if current_config["wandb_active"]:
         wandb.login()

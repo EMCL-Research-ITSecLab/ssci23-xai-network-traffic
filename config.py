@@ -1,4 +1,5 @@
 from tensorflow import keras
+
 from models import vgg19_model, xception_model
 
 DEFAULT_MODEL_PATH = "results/models"
