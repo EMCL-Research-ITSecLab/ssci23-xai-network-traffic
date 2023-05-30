@@ -7,7 +7,7 @@ models
 artifacts
 figures
 .vscode
-
+*.out
 # C extensions
 *.so
 *.csv
