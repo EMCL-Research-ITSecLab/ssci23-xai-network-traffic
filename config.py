@@ -302,7 +302,7 @@ config_multiclass_vit = dict(
     label_mode="int",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=3,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/multiclass-flow-minp2-dim16-cols8-ALL-NONE-split-ratio",
     history_path=DEFAULT_MODEL_PATH
