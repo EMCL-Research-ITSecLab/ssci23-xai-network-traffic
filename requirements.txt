@@ -9,5 +9,4 @@ ipywidgets
 click==8.1.3
 keras
 tensorflow
-tensorflow-gpu
 wandb
