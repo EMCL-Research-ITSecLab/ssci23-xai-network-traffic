@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
-import tensorrt
 import wandb
 from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support
@@ -16,7 +15,7 @@ from metrics import PRMetrics, WandbClfEvalCallback
 from models import vgg19_model, xception_model
 
 if __name__ == "__main__":
-    current_config = config.config_multiclass_cnn
+    current_config = config.config_multiclass_cnn_vgg19
 
     if current_config["wandb_active"]:
         wandb.login()
@@ -34,7 +33,8 @@ if __name__ == "__main__":
     train_ds = train_ds.prefetch(tf.data.AUTOTUNE)
     val_ds = val_ds.prefetch(tf.data.AUTOTUNE)
 
-    model = xception_model(
+    # Create model
+    model = current_config["model"](
         image_size=current_config["image_size"] + (current_config["image_channels"],),
         classes=current_config["num_classes"],
         activation=current_config["activation"],
@@ -124,7 +124,7 @@ if __name__ == "__main__":
         optimizer=keras.optimizers.SGD(current_config["learning_rate"]),
         loss=current_config["loss"],
         metrics=[
-            keras.metrics.Accuracy(),
+            "accuracy",
             keras.metrics.Precision(),
             keras.metrics.Recall(),
             keras.metrics.AUC(
@@ -132,26 +132,26 @@ if __name__ == "__main__":
             ),
         ],
     )
-    # if current_config["print_model"]:
-    #     model.summary()
+    if current_config["print_model"]:
+        model.summary()
 
-    # history = model.fit(
-    #     train_ds,
-    #     epochs=current_config["epochs"],
-    #     callbacks=callbacks,
-    #     validation_data=val_ds,
-    #     validation_steps=1,
-    #     class_weight=class_dict,
-    # )
+    history = model.fit(
+        train_ds,
+        epochs=current_config["epochs"],
+        callbacks=callbacks,
+        validation_data=val_ds,
+        validation_steps=1,
+        class_weight=class_dict,
+    )
 
-    # if current_config["wandb_active"]:
-    #     # Close the W&B run
-    #     run.finish()
+    if current_config["wandb_active"]:
+        # Close the W&B run
+        run.finish()
 
-    # np.save(
-    #     current_config["history_path"].format(current_config["epochs"]),
-    #     history.history,
-    # )
+    np.save(
+        current_config["history_path"].format(current_config["epochs"]),
+        history.history,
+    )
 
     #################################################################################
     ## EVALUATE
@@ -216,7 +216,7 @@ if __name__ == "__main__":
     cmd = ConfusionMatrixDisplay(cm, display_labels=dispaly_labels)
     cmd.plot()
     cmd.ax_.set(xlabel="Predicted", ylabel="True")
-    plt.savefig("test2.jpg")
+    plt.savefig(current_config["model_path"].format(current_config["epochs"]) + ".pdf")
 
     # Scores
     precision, recall, fscore, support = precision_recall_fscore_support(y_test, y_pred)
