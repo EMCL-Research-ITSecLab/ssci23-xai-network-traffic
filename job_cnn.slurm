@@ -22,4 +22,4 @@ source $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 # Verify install:
 python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
 
-python train_cnn.py
+python train_cnn.py $1
