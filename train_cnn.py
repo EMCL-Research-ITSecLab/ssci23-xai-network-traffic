@@ -28,7 +28,7 @@ if __name__ == "__main__":
         current_config = config.config_binary_cnn_xception
     elif args[0] == "binary_cnn_vgg19":
         current_config = config.config_binary_cnn_vgg19
-    if args[0] == "multiclass_cnn_vgg19_header":
+    elif args[0] == "multiclass_cnn_vgg19_header":
         current_config = config.config_multiclass_cnn_vgg19_header
     elif args[0] == "multiclass_cnn_xception_header":
         current_config = config.config_multiclass_cnn_xception_header
