@@ -12,6 +12,9 @@ img_size = (128, 128, 3)
 
 model = keras.models.load_model('/home/smachmeier/Documents/projects/network-traffic-classification/results/models/save_at_3_binary_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-split-ratio')
 
+# preprocess_input = keras.applications.xception.preprocess_input
+# decode_predictions = keras.applications.xception.decode_predictions
+
 img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Htbot-5768.pcap_processed.png"
 # img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/benign/2013-12-17_capture1-0497.pcap_processed.png"
 # img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/malware/2014-01-31_capture-win7-0022.pcap_processed.png"
@@ -263,7 +266,8 @@ class GradVisualizer:
         ax[0].set_title("Input")
         ax[1].set_title("Normal gradients")
         ax[2].set_title("Integrated gradients")
-        plt.savefig(f"gradient_{clip_above_percentile}.jpg")
+        plt.tight_layout()
+        plt.savefig(f"gradient_{clip_above_percentile}.pdf")
 
 def get_img_array(img_path, size):
     # img is a PIL image of size 128x128
@@ -391,10 +395,10 @@ if __name__ == "__main__":
     orig_img = np.copy(img[0]).astype(np.uint8)
 
     # 3. Preprocess the image
-    img_processed = img
+    img_processed =  img
 
     # 4. Get model predictions
-    preds = model.predict(img_processed)
+    preds = model.predict(img)
     top_pred_idx = tf.argmax(preds[0])
     print("Predicted:", top_pred_idx)
     print("Predicted:", preds)

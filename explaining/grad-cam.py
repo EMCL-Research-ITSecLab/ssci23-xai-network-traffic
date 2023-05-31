@@ -58,7 +58,7 @@ def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index=None
     heatmap = tf.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
     return heatmap.numpy()
 
-def save_and_display_gradcam(img_path, heatmap, cam_path="cam.jpg", alpha=0.4):
+def save_and_display_gradcam(img_path, heatmap, cam_path="grad-cam.pdf", alpha=0.4):
     # Load the original image
     img = keras.preprocessing.image.load_img(img_path)
     img = keras.preprocessing.image.img_to_array(img)
@@ -83,6 +83,7 @@ def save_and_display_gradcam(img_path, heatmap, cam_path="cam.jpg", alpha=0.4):
     superimposed_img = keras.preprocessing.image.array_to_img(superimposed_img)
 
     # Save the superimposed image
+    plt.tight_layout()
     superimposed_img.save(cam_path)
 
 if __name__ == "__main__":
@@ -104,7 +105,8 @@ if __name__ == "__main__":
 
     # Display heatmap
     plt.matshow(heatmap)
-    plt.savefig("test.jpg")
-    
+    plt.tight_layout()
+    plt.savefig("grad-cam-heatmap.pdf")
+
     # Display heatmap
     save_and_display_gradcam(img_path, heatmap)

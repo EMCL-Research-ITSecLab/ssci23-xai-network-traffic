@@ -119,5 +119,6 @@ if __name__ == "__main__":
                 axes[i, j].axis("off")
                 img_count += 1
     plt.show()
-    plt.savefig("attention.jpg")
+    plt.tight_layout()
+    plt.savefig("attention-heatmaps.pdf")
 
