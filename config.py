@@ -72,7 +72,7 @@ config_binary_cnn_xception = dict(
     label_mode="binary",
     earlystopping_patience=3,
     learning_rate=1e-3,
-    epochs=3,
+    epochs=40,
     dataset_path=DEFAULT_DATA_PATH
     + "/binary-flow-minp2-dim16-cols8-ALL-NONE-split-ratio",
     history_path=DEFAULT_MODEL_PATH
