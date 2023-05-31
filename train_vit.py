@@ -65,7 +65,7 @@ if __name__ == "__main__":
     )
 
     callbacks = [
-        keras.callbacks.EarlyStopping(monitor="accuracy", patience=current_config["earlystopping_patience"]),
+        keras.callbacks.EarlyStopping(monitor="loss", patience=current_config["earlystopping_patience"]),
         keras.callbacks.ModelCheckpoint(
             filepath=current_config["model_path"].format(current_config["epochs"]),
             # save_weights_only=True,
