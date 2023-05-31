@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 import wandb
-from sklearn.metrics import (ConfusionMatrixDisplay, confusion_matrix,
-                             precision_recall_fscore_support, classification_report, accuracy_score)
+from sklearn.metrics import (ConfusionMatrixDisplay, accuracy_score,
+                             classification_report, confusion_matrix,
+                             precision_recall_fscore_support)
 from sklearn.utils import class_weight
 from tensorflow import keras
 from wandb.keras import (WandbEvalCallback, WandbMetricsLogger,
