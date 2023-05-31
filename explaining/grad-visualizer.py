@@ -7,17 +7,12 @@ from keras.applications import xception
 from scipy import ndimage
 from tensorflow import keras
 
-from train_vit import create_vit_classifier
-
 # Size of the input image
 img_size = (128, 128, 3)
 
-model = keras.models.load_model('results/save_at_1_binary_cnn_binary-flow-minp2-dim16-cols8-ALL-HEADER-split-fixed.keras')
+model = keras.models.load_model('/home/smachmeier/Documents/projects/network-traffic-classification/results/models/save_at_3_binary_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-split-ratio')
 
-# model = create_vit_classifier()
-# model.load_weights('results/save_at_3_vit.keras')
-
-img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-HEADER/malware/Weibo-1-0185.pcap_processed.png"
+img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Htbot-5768.pcap_processed.png"
 # img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/benign/2013-12-17_capture1-0497.pcap_processed.png"
 # img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/malware/2014-01-31_capture-win7-0022.pcap_processed.png"
 # img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/malware/2014-01-31_capture-win7-77387.pcap_processed.png"
@@ -268,15 +263,15 @@ class GradVisualizer:
         ax[0].set_title("Input")
         ax[1].set_title("Normal gradients")
         ax[2].set_title("Integrated gradients")
-        plt.savefig(f"gradient_{clip_above_percentile}.pdf")
+        plt.savefig(f"gradient_{clip_above_percentile}.jpg")
 
-def get_img_array(img_path, size=(128, 128)):
-    # `img` is a PIL image of size 299x299
+def get_img_array(img_path, size):
+    # img is a PIL image of size 128x128
     img = keras.preprocessing.image.load_img(img_path, target_size=size)
     # `array` is a float32 Numpy array of shape (299, 299, 3)
     array = keras.preprocessing.image.img_to_array(img)
     # We add a dimension to transform our array into a "batch"
-    # of size (1, 299, 299, 3)
+    # of size (1, 128, 128, 3)
     array = np.expand_dims(array, axis=0)
     return array
 
@@ -390,25 +385,19 @@ def random_baseline_integrated_gradients(
 
 if __name__ == "__main__":
     # 1. Convert the image to numpy array
-    img = get_img_array(img_path)
-    # img = keras.preprocessing.image.load_img(img_path, target_size=(128, 128))
-    # array = keras.preprocessing.image.img_to_array(img)
+    img = get_img_array(img_path, (128,128))
 
     # 2. Keep a copy of the original image
     orig_img = np.copy(img[0]).astype(np.uint8)
 
     # 3. Preprocess the image
-    img_processed = tf.cast(xception.preprocess_input(img), dtype=tf.float32)
+    img_processed = img
 
     # 4. Get model predictions
-    
-    # print(array.shape)
-    # array = np.expand_dims(array, axis=0)
-    # model.summary()
     preds = model.predict(img_processed)
-    print(preds)
     top_pred_idx = tf.argmax(preds[0])
     print("Predicted:", top_pred_idx)
+    print("Predicted:", preds)
 
     # 5. Get the gradients of the last layer for the predicted label
     grads = get_gradients(img_processed, top_pred_idx=top_pred_idx)
@@ -420,14 +409,6 @@ if __name__ == "__main__":
 
     # 7. Process the gradients and plot
     vis = GradVisualizer()
-    vis.visualize(
-        image=orig_img,
-        gradients=grads[0].numpy(),
-        integrated_gradients=igrads.numpy(),
-        clip_above_percentile=99,
-        clip_below_percentile=0,
-    )
-
     vis.visualize(
         image=orig_img,
         gradients=grads[0].numpy(),

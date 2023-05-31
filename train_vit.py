@@ -1,16 +1,19 @@
+import sys
+
 import matplotlib.pyplot as plt
 import numpy as np
+import tensorflow as tf
 import wandb
-from sklearn.metrics import (ConfusionMatrixDisplay, confusion_matrix,
-                             precision_recall_fscore_support, classification_report, accuracy_score)
+from sklearn.metrics import (ConfusionMatrixDisplay, accuracy_score,
+                             classification_report, confusion_matrix,
+                             precision_recall_fscore_support)
 from sklearn.utils import class_weight
 from tensorflow import keras
-import tensorflow as tf
-import sys
 
 import config
 from datasets import get_datasets
 from models import vit
+from new_model import ViTClassifier, get_config
 
 if __name__ == "__main__":
 
@@ -44,7 +47,7 @@ if __name__ == "__main__":
         num_classes=current_config["num_classes"],
     )
 
-    model = vit(current_config)
+    model = ViTClassifier(get_config())
 
     model.compile(
         optimizer=keras.optimizers.SGD(
@@ -122,7 +125,7 @@ if __name__ == "__main__":
     model = keras.models.load_model(current_config["model_path"].format(current_config["epochs"]))
 
     print("Model evaluation:")
-    model.evaluate(test_ds)
+    # model.evaluate(test_ds) # 
 
     # Important: Unbatching is necessary to get the correct order of images and labels
     x_test = []
@@ -135,7 +138,7 @@ if __name__ == "__main__":
     y_test = np.array(y_test)
 
     # Get Y prediction
-    y_pred = model.predict(x_test)
+    y_pred, attention = model.predict(x_test)
 
     print(f"Y test has shape {y_test.shape}")
     print(f"Y pred has shape {y_pred.shape}")
