@@ -250,7 +250,7 @@ if __name__ == "__main__":
     # print("fscore: {}".format(fscore))
     # print("support: {}".format(support))
 
-    print(classification_report(y_test, y_pred, target_names=dispaly_labels))
-
     # print("Accuracy Score:")
     # print(accuracy_score(y_test, y_pred))
+
+    print(classification_report(y_test, y_pred, target_names=dispaly_labels, digits=4))

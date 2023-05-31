@@ -177,7 +177,7 @@ if __name__ == "__main__":
     cmd = ConfusionMatrixDisplay(cm, display_labels=dispaly_labels)
     cmd.plot()
     cmd.ax_.set(xlabel="Predicted", ylabel="True")
-    plt.savefig(current_config["model_path"].format(current_config["epochs"]) + ".pdf")
+    plt.savefig("test321321.jpg")
 
     # Scores
     # precision, recall, fscore, support = precision_recall_fscore_support(y_test, y_pred)
@@ -187,7 +187,7 @@ if __name__ == "__main__":
     # print("fscore: {}".format(fscore))
     # print("support: {}".format(support))
 
-    print(classification_report(y_test, y_pred, target_names=dispaly_labels))
-
     # print("Accuracy Score:")
     # print(accuracy_score(y_test, y_pred))
+
+    print(classification_report(y_test, y_pred, target_names=dispaly_labels, digits=4))
