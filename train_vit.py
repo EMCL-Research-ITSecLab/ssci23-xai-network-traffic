@@ -46,7 +46,9 @@ if __name__ == "__main__":
         shuffle_buffer=current_config["shuffle_buffer"],
         num_classes=current_config["num_classes"],
     )
-
+    conf = get_config()
+    conf.num_classes = current_config["num_classes"]
+    conf.update(conf)
     model = ViTClassifier(get_config())
 
     model.compile(
