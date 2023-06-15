@@ -6,7 +6,6 @@ wandb
 models
 artifacts
 .vscode
-*.out
 # C extensions
 *.so
 *.csv
