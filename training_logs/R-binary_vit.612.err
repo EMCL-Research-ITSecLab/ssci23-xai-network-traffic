@@ -1,0 +1,265 @@
+/bin/bash: /usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/libtinfo.so.6: no version information available (required by /bin/bash)
+
+CondaSystemExit: Exiting.
+
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+    WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+    WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.14.0
+  latest version: 23.5.0
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+    WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+    WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+torch 2.0.1 requires nvidia-cudnn-cu11==8.5.0.96; platform_system == "Linux" and platform_machine == "x86_64", but you have nvidia-cudnn-cu11 8.6.0.163 which is incompatible.
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+2023-06-02 07:36:16.573773: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-06-02 07:36:17.147332: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-06-02 07:36:18.976152: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-06-02 07:36:19.533255: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-06-02 07:36:35.476655: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 78945 MB memory:  -> device: 0, name: NVIDIA A100 80GB PCIe, pci bus id: 0000:25:00.0, compute capability: 8.0
+2023-06-02 07:36:42.516947: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_4' with dtype int32 and shape [391381]
+	 [[{{node Placeholder/_4}}]]
+2023-06-02 07:36:42.517291: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_4' with dtype int32 and shape [391381]
+	 [[{{node Placeholder/_4}}]]
+2023-06-02 07:37:28.504575: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_17' with dtype double and shape [2]
+	 [[{{node Placeholder/_17}}]]
+2023-06-02 07:37:28.504965: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_0' with dtype string and shape [391381]
+	 [[{{node Placeholder/_0}}]]
+2023-06-02 07:37:37.503434: I tensorflow/compiler/xla/stream_executor/cuda/cuda_blas.cc:637] TensorFloat-32 will be used for the matrix multiplication. This will only be logged once.
+2023-06-02 07:37:37.523120: I tensorflow/compiler/xla/service/service.cc:169] XLA service 0x7fd2f7ad5cc0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2023-06-02 07:37:37.523139: I tensorflow/compiler/xla/service/service.cc:177]   StreamExecutor device (0): NVIDIA A100 80GB PCIe, Compute Capability 8.0
+2023-06-02 07:37:37.672887: I tensorflow/compiler/xla/stream_executor/cuda/cuda_dnn.cc:424] Loaded cuDNN version 8600
+2023-06-02 07:37:37.681134: W tensorflow/compiler/xla/service/gpu/llvm_gpu_backend/gpu_backend_lib.cc:530] Can't find libdevice directory ${CUDA_DIR}/nvvm/libdevice. This may result in compilation or runtime failures, if the program we try to run uses routines from libdevice.
+Searched for CUDA in the following directories:
+  ./cuda_sdk_lib
+  /usr/local/cuda-11.8
+  /usr/local/cuda
+  .
+You can choose the search directory by setting xla_gpu_cuda_data_dir in HloModule's DebugOptions.  For most apps, setting the environment variable XLA_FLAGS=--xla_gpu_cuda_data_dir=/path/to/cuda will work.
+2023-06-02 07:37:37.737281: I ./tensorflow/compiler/jit/device_compiler.h:180] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+2023-06-02 07:44:23.280965: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_4' with dtype int32 and shape [111822]
+	 [[{{node Placeholder/_4}}]]
+2023-06-02 07:44:23.281661: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_4' with dtype int32 and shape [111822]
+	 [[{{node Placeholder/_4}}]]
+2023-06-02 07:44:24.778186: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'input_1' with dtype float and shape [?,128,128,3]
+	 [[{{node input_1}}]]
+2023-06-02 07:44:25.787205: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'input_1' with dtype float and shape [?,128,128,3]
+	 [[{{node input_1}}]]
+2023-06-02 07:44:26.050498: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,128,128,3]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.228971: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'input_1' with dtype float and shape [?,128,128,3]
+	 [[{{node input_1}}]]
+2023-06-02 07:44:26.246936: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,128,128,3]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.420270: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'input_1' with dtype float and shape [?,128,128,3]
+	 [[{{node input_1}}]]
+2023-06-02 07:44:26.433415: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'images' with dtype float and shape [?,128,128,3]
+	 [[{{node images}}]]
+2023-06-02 07:44:26.437274: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'patch' with dtype float and shape [?,?,768]
+	 [[{{node patch}}]]
+2023-06-02 07:44:26.462666: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.465994: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.472041: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.476180: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.506424: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.509765: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.515845: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.519272: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.549447: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.552782: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.558822: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.562140: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.592977: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.596399: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.602441: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.605772: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.635968: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.639382: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.645408: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.648752: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.679396: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.682793: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.688715: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.692078: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.722192: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.725617: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.731584: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.734971: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.767979: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.771441: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.777399: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.780797: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.794869: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,4096]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.803658: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,2048]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.812415: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,1024]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.908793: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,128,128,3]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:26.977649: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,128,128,3]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:27.243734: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'input_1' with dtype float and shape [?,128,128,3]
+	 [[{{node input_1}}]]
+2023-06-02 07:44:27.420090: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,128,128,3]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:27.482467: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,128,128,3]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.004671: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'images' with dtype float and shape [?,128,128,3]
+	 [[{{node images}}]]
+2023-06-02 07:44:29.014599: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'patch' with dtype float and shape [?,?,768]
+	 [[{{node patch}}]]
+2023-06-02 07:44:29.114786: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.131617: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.145343: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.162083: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.258497: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.276151: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.289912: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.306533: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.407927: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.425077: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.439774: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.456669: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.554033: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.571137: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.584963: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.602597: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.700012: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.717089: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.730813: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:29.747606: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.152217: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.169405: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.183298: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.200235: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.298865: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.315987: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.329761: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.346568: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.451285: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.468258: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.482096: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,128]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.498867: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,64,64]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.534618: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,4096]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.557781: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,2048]
+	 [[{{node inputs}}]]
+2023-06-02 07:44:30.581651: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,1024]
+	 [[{{node inputs}}]]
+WARNING:absl:Found untraced functions such as dense_layer_call_fn, dense_layer_call_and_return_conditional_losses, embedding_layer_call_fn, embedding_layer_call_and_return_conditional_losses, query_layer_call_fn while saving (showing 5 of 100). These functions will not be directly callable after loading.
+2023-06-02 07:44:31.212332: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'serving_default_input_1' with dtype float and shape [?,128,128,3]
+	 [[{{node serving_default_input_1}}]]
+2023-06-02 11:10:39.155824: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'images' with dtype float and shape [?,128,128,3]
+	 [[{{node images}}]]
+2023-06-02 11:10:39.157866: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder' with dtype float and shape [?,128,128,3]
+	 [[{{node Placeholder}}]]
+2023-06-02 11:10:39.161574: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'patch' with dtype float and shape [?,?,768]
+	 [[{{node patch}}]]
+2023-06-02 11:10:39.164681: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder' with dtype float and shape [?,?,768]
+	 [[{{node Placeholder}}]]
+2023-06-02 11:10:39.586719: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_4' with dtype int32 and shape [55914]
+	 [[{{node Placeholder/_4}}]]
+2023-06-02 11:10:39.587035: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_4' with dtype int32 and shape [55914]
+	 [[{{node Placeholder/_4}}]]
