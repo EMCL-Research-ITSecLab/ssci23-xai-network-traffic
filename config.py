@@ -3,7 +3,7 @@ from tensorflow import keras
 from models import vgg19_model, xception_model
 
 DEFAULT_MODEL_PATH = "results/models"
-DEFAULT_DATA_PATH = "/home/smachmeier/data"
+DEFAULT_DATA_PATH = "/mnt/md0"
 
 config_binary_cnn_vgg19 = dict(
     num_classes=1,
@@ -250,13 +250,13 @@ config_binary_vit = dict(
     dataset_path=DEFAULT_DATA_PATH
     + "/binary-flow-minp2-dim16-cols8-ALL-NONE-split-ratio",
     history_path=DEFAULT_MODEL_PATH
-    + "/save_at_{0}_binary_vit_flow-minp2-dim16-cols8-ALL-NONE-split-ratio.npy",
+    + "/save_at_{0}_binary_vit_flow-minp2-dim16-cols8-ALL-NONE-split-ratio-ATTENTION.npy",
     model_path=DEFAULT_MODEL_PATH
-    + "/save_at_{0}_binary_vit_flow-minp2-dim16-cols8-ALL-NONE-split-ratio",
+    + "/save_at_{0}_binary_vit_flow-minp2-dim16-cols8-ALL-NONE-split-ratio-ATTENTION",
     csv_path=DEFAULT_MODEL_PATH
-    + "/log_{0}_binary_vit_flow-minp2-dim16-cols8-ALL-NONE-split-ratio.csv",
+    + "/log_{0}_binary_vit_flow-minp2-dim16-cols8-ALL-NONE-split-ratio-ATTENTION.csv",
     tensorboard_path=DEFAULT_MODEL_PATH
-    + "/tensorboard_{0}_binary_vit_flow-minp2-dim16-cols8-ALL-NONE-split-ratio",
+    + "/tensorboard_{0}_binary_vit_flow-minp2-dim16-cols8-ALL-NONE-split-ratio-ATTENTION",
     loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
     wandb_project="binary-vit",
     activation="sigmoid",

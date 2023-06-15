@@ -1,0 +1,91 @@
+/bin/bash: /usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/libtinfo.so.6: no version information available (required by /bin/bash)
+
+CondaSystemExit: Exiting.
+
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.14.0
+  latest version: 23.5.0
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+    WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+    WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+torch 2.0.1 requires nvidia-cudnn-cu11==8.5.0.96; platform_system == "Linux" and platform_machine == "x86_64", but you have nvidia-cudnn-cu11 8.6.0.163 which is incompatible.
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution -vidia-cudnn-cu11 (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+WARNING: Ignoring invalid distribution - (/usr/local/Miniconda3-py39_4.10.3-Linux-x86_64/envs/ssci/lib/python3.10/site-packages)
+2023-05-31 07:30:40.271837: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-05-31 07:30:40.894131: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-05-31 07:30:42.881180: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-05-31 07:30:43.451349: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-05-31 07:31:04.742302: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 78945 MB memory:  -> device: 0, name: NVIDIA A100 80GB PCIe, pci bus id: 0000:41:00.0, compute capability: 8.0
+2023-05-31 07:31:13.159842: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_0' with dtype string and shape [391374]
+	 [[{{node Placeholder/_0}}]]
+2023-05-31 07:31:13.160179: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_0' with dtype string and shape [391374]
+	 [[{{node Placeholder/_0}}]]
+2023-05-31 07:32:03.808739: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_21' with dtype double and shape [19]
+	 [[{{node Placeholder/_21}}]]
+2023-05-31 07:32:03.809114: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_4' with dtype int32 and shape [391374]
+	 [[{{node Placeholder/_4}}]]
+2023-05-31 07:32:10.343800: I tensorflow/compiler/xla/stream_executor/cuda/cuda_dnn.cc:424] Loaded cuDNN version 8600
+2023-05-31 07:32:12.050242: I tensorflow/compiler/xla/stream_executor/cuda/cuda_blas.cc:637] TensorFloat-32 will be used for the matrix multiplication. This will only be logged once.
+2023-05-31 07:32:12.054933: I tensorflow/compiler/xla/service/service.cc:169] XLA service 0x25936e10 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2023-05-31 07:32:12.054978: I tensorflow/compiler/xla/service/service.cc:177]   StreamExecutor device (0): NVIDIA A100 80GB PCIe, Compute Capability 8.0
+2023-05-31 07:32:12.067823: W tensorflow/compiler/xla/service/gpu/llvm_gpu_backend/gpu_backend_lib.cc:530] Can't find libdevice directory ${CUDA_DIR}/nvvm/libdevice. This may result in compilation or runtime failures, if the program we try to run uses routines from libdevice.
+Searched for CUDA in the following directories:
+  ./cuda_sdk_lib
+  /usr/local/cuda-11.8
+  /usr/local/cuda
+  .
+You can choose the search directory by setting xla_gpu_cuda_data_dir in HloModule's DebugOptions.  For most apps, setting the environment variable XLA_FLAGS=--xla_gpu_cuda_data_dir=/path/to/cuda will work.
+2023-05-31 07:32:12.129524: I ./tensorflow/compiler/jit/device_compiler.h:180] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+2023-05-31 07:37:27.429704: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_0' with dtype string and shape [111815]
+	 [[{{node Placeholder/_0}}]]
+2023-05-31 07:37:27.430010: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_0' with dtype string and shape [111815]
+	 [[{{node Placeholder/_0}}]]
+WARNING:absl:Found untraced functions such as _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 40). These functions will not be directly callable after loading.
+WARNING:absl:Found untraced functions such as _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 40). These functions will not be directly callable after loading.
+WARNING:absl:Found untraced functions such as _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 40). These functions will not be directly callable after loading.
+WARNING:absl:Found untraced functions such as _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 40). These functions will not be directly callable after loading.
+WARNING:absl:Found untraced functions such as _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 40). These functions will not be directly callable after loading.
+WARNING:absl:Found untraced functions such as _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 40). These functions will not be directly callable after loading.
+2023-05-31 10:53:01.011063: W tensorflow/core/util/tensor_slice_reader.cc:97] Could not open results/models/save_at_40_multiclass_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-ratio: FAILED_PRECONDITION: results/models/save_at_40_multiclass_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-ratio; Is a directory: perhaps your file is in a different file format and you need to use a different restore operator?
+2023-05-31 10:53:01.558866: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_4' with dtype int32 and shape [55928]
+	 [[{{node Placeholder/_4}}]]
+2023-05-31 10:53:01.559315: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_4' with dtype int32 and shape [55928]
+	 [[{{node Placeholder/_4}}]]
+2023-05-31 10:53:12.584909: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_4' with dtype int32 and shape [55928]
+	 [[{{node Placeholder/_4}}]]
+2023-05-31 10:53:12.585876: I tensorflow/core/common_runtime/executor.cc:1197] [/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'Placeholder/_0' with dtype string and shape [55928]
+	 [[{{node Placeholder/_0}}]]
