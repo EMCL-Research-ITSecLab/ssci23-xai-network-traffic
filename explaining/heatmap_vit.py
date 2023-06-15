@@ -80,13 +80,14 @@ def attention_heatmap(attention_score_dict, image, model_type="dino"):
     return attentions
 
 if __name__ == "__main__":    
-    model = keras.models.load_model('/home/smachmeier/Documents/projects/network-traffic-classification/results/models/save_at_1_binary_vit_flow-minp2-dim16-cols8-ALL-NONE-split-ratio', compile=False)
+    model = keras.models.load_model('/home/smachmeier/results/models/save_at_40_binary_vit_flow-minp2-dim16-cols8-ALL-NONE-split-ratio', compile=False)
     inputs = keras.Input((RESOLUTION, RESOLUTION, 3))
     outputs, attention_weights = model(inputs, training=False)
 
     model_2 = keras.Model(inputs, outputs=[outputs, attention_weights])
 
     img = get_img_array("/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Htbot-5768.pcap_processed.png", (128,128))
+    # img = get_img_array("/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Virut-2314.pcap_processed.png", (128,128))
 
     preprocessed_image = preprocess_image(img, "original_vit")
     # preprocessed_image = img
@@ -106,19 +107,47 @@ if __name__ == "__main__":
     # Generate the attention heatmaps.
     attentions = attention_heatmap(attention_score_dict, preprocessed_img_orig)
 
+    # img = get_img_array("/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Htbot-5768.pcap_processed.png", (128,128))
+    img2 = get_img_array("/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Virut-2314.pcap_processed.png", (128,128))
+
+    preprocessed_image = preprocess_image(img, "original_vit")
+    # preprocessed_image = img
+   
+    predictions, attention_score_dict = model_2.predict(
+        preprocessed_image
+    )
+    print(predictions)
+
+    # De-normalize the image for visual clarity.
+    in1k_mean = tf.constant([0.485 * 255, 0.456 * 255, 0.406 * 255])
+    in1k_std = tf.constant([0.229 * 255, 0.224 * 255, 0.225 * 255])
+    preprocessed_img_orig = (preprocessed_image * in1k_std) + in1k_mean
+    preprocessed_img_orig = preprocessed_img_orig / 255.0
+    preprocessed_img_orig = tf.clip_by_value(preprocessed_img_orig, 0.0, 1.0).numpy()
+
+    # Generate the attention heatmaps.
+    attentions2 = attention_heatmap(attention_score_dict, preprocessed_img_orig)
+
+    assert(np.array_equal(attentions[..., 11], attentions2[..., 11]))
+
     # Plot the maps.
-    fig, axes = plt.subplots(nrows=3, ncols=4, figsize=(13, 13))
-    img_count = 0
+    # fig, axes = plt.subplots(nrows=3, ncols=4, figsize=(13, 13))
+    # img_count = 0
 
-    for i in range(3):
-        for j in range(4):
-            if img_count < len(attentions):
-                axes[i, j].imshow(preprocessed_img_orig[0])
-                axes[i, j].imshow(attentions[..., img_count], cmap="inferno", alpha=0.6)
-                axes[i, j].title.set_text(f"Attention head: {img_count}")
-                axes[i, j].axis("off")
-                img_count += 1
-    plt.show()
-    plt.tight_layout()
-    plt.savefig("attention-heatmaps.pdf")
-
+    # for i in range(3):
+    #     for j in range(4):
+    #         if img_count < len(attentions):
+    #             axes[i, j].imshow(preprocessed_img_orig[0])
+    #             axes[i, j].imshow(attentions[..., img_count], cmap="inferno", alpha=0.6)
+    #             axes[i, j].title.set_text(f"Attention head: {img_count}")
+    #             axes[i, j].axis("off")
+    #             img_count += 1
+    # plt.show()
+    # plt.tight_layout()
+    # plt.savefig("attention-heatmaps.jpg")
+    # plt.imshow(preprocessed_img_orig[0])
+    # plt.imshow(attentions[..., 11], cmap="inferno", alpha=0.6)
+    # plt.axis("off")
+    # plt.show()
+    # plt.tight_layout()
+    # plt.savefig("attention-heatmaps-Htbot-5768.pdf")

@@ -108,20 +108,14 @@ if __name__ == "__main__":
         class_dict[index] = classw
     print(f"Class dict are {class_dict}")
 
-    history = model.fit(
-        train_ds,
-        batch_size=current_config["batch_size"],
-        epochs=current_config["epochs"],
-        callbacks=callbacks,
-        validation_data=val_ds,
-        validation_steps=1,
-        class_weight=class_dict,
-    )
-
-    # model.load_weights(
-    #     current_config["model_path"].format(
-    #         current_config["epochs"]
-    #     )
+    # history = model.fit(
+    #     train_ds,
+    #     batch_size=current_config["batch_size"],
+    #     epochs=current_config["epochs"],
+    #     callbacks=callbacks,
+    #     validation_data=val_ds,
+    #     validation_steps=1,
+    #     class_weight=class_dict,
     # )
 
     model = keras.models.load_model(current_config["model_path"].format(current_config["epochs"]))

@@ -2,16 +2,18 @@ import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
+
 # Display
 from IPython.display import Image, display
 from tensorflow import keras
 
-# img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-filtered-by-hash-HEADER-split/test/malware/Weibo-1-0185.pcap_processed.png"
-# img_path ="/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Virut-10765.pcap_processed.png"
-img_path ="/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Htbot-5768.pcap_processed.png"
+img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Htbot-5768.pcap_processed.png"
+# img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/benign/Weibo-4-1014.pcap_processed.png"
+# img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Virut-2314.pcap_processed.png"
 img_size = (128, 128)
 
 last_conv_layer_name = "block14_sepconv2_act"
+
 
 def get_img_array(img_path, size):
     # `img` is a PIL image of size 128x128
@@ -22,6 +24,7 @@ def get_img_array(img_path, size):
     # of size (1, 128, 128, 3)
     array = np.expand_dims(array, axis=0)
     return array
+
 
 def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index=None):
     # First, we create a model that maps the input image to the activations
@@ -58,7 +61,8 @@ def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index=None
     heatmap = tf.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
     return heatmap.numpy()
 
-def save_and_display_gradcam(img_path, heatmap, cam_path="grad-cam.pdf", alpha=0.4):
+
+def save_and_display_gradcam(img_path, heatmap, cam_path="grad-cam-save_at_40_multiclass_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-ratio-Htbot-5768.pdf", alpha=0.4):
     # Load the original image
     img = keras.preprocessing.image.load_img(img_path)
     img = keras.preprocessing.image.img_to_array(img)
@@ -86,19 +90,22 @@ def save_and_display_gradcam(img_path, heatmap, cam_path="grad-cam.pdf", alpha=0
     plt.tight_layout()
     superimposed_img.save(cam_path)
 
+
 if __name__ == "__main__":
     # Prepare image
     img_array = get_img_array(img_path, size=img_size)
 
     # Make model
-    model = keras.models.load_model('/home/smachmeier/Documents/projects/network-traffic-classification/results/models/save_at_3_binary_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-split-ratio')
+    model = keras.models.load_model(
+        "/home/smachmeier/results/models/save_at_40_multiclass_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-ratio"
+    )
 
     # Print what the top predicted class is
     preds = model.predict(img_array)
     print("Predicted:", preds)
 
     # Remove last layer's softmax
-    model.layers[-1].activation = None 
+    model.layers[-1].activation = None
 
     # Generate class activation heatmap
     heatmap = make_gradcam_heatmap(img_array, model, last_conv_layer_name)
@@ -106,7 +113,7 @@ if __name__ == "__main__":
     # Display heatmap
     plt.matshow(heatmap)
     plt.tight_layout()
-    plt.savefig("grad-cam-heatmap.pdf")
+    plt.savefig("grad-cam-heatmap-save_at_40_multiclass_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-ratio-Htbot-5768.pdf")
 
     # Display heatmap
     save_and_display_gradcam(img_path, heatmap)

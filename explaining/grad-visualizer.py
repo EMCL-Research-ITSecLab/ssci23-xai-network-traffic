@@ -10,16 +10,12 @@ from tensorflow import keras
 # Size of the input image
 img_size = (128, 128, 3)
 
-model = keras.models.load_model('/home/smachmeier/Documents/projects/network-traffic-classification/results/models/save_at_3_binary_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-split-ratio')
+model = keras.models.load_model("/home/smachmeier/results/models/save_at_40_multiclass_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-ratio")
+# model = keras.models.load_model("/home/smachmeier/results/models/save_at_40_multiclass_cnn_vgg19_flow-minp2-dim16-cols8-ALL-NONE-ratio")
 
-# preprocess_input = keras.applications.xception.preprocess_input
-# decode_predictions = keras.applications.xception.decode_predictions
-
-img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Htbot-5768.pcap_processed.png"
-# img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/benign/2013-12-17_capture1-0497.pcap_processed.png"
-# img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/malware/2014-01-31_capture-win7-0022.pcap_processed.png"
-# img_path = "/home/smachmeier/data/test-data-flow-minp3-dim16-cols8/malware/2014-01-31_capture-win7-77387.pcap_processed.png"
-
+# img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Htbot-5768.pcap_processed.png"
+# img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/benign/Weibo-4-1014.pcap_processed.png"
+img_path = "/home/smachmeier/data/binary-flow-minp2-dim16-cols8-ALL-NONE/malware/Virut-2314.pcap_processed.png"
 
 class GradVisualizer:
     """Plot gradients of the outputs w.r.t an input image."""
@@ -258,16 +254,25 @@ class GradVisualizer:
             overlay=overlay,
         )
 
-        _, ax = plt.subplots(1, 3, figsize=figsize)
-        ax[0].imshow(image)
-        ax[1].imshow(grads_attr.astype(np.uint8))
-        ax[2].imshow(igrads_attr.astype(np.uint8))
+        #_, ax = plt.subplots(1, 1, figsize=figsize)
+        # ax[0].imshow(image)
+        # ax[1].imshow(grads_attr.astype(np.uint8))
+        # ax[2].imshow(igrads_attr.astype(np.uint8))
 
-        ax[0].set_title("Input")
-        ax[1].set_title("Normal gradients")
-        ax[2].set_title("Integrated gradients")
+        # ax[0].set_title("Input")
+        # ax[1].set_title("Normal gradients")
+        #img = plt.imshow(igrads_attr.astype(np.uint8), aspect='auto')
+        #plt.axis('off')
+        # ax[2].set_title("Integrated gradients")
+        # plt.savefig(f"gradient_{clip_above_percentile}_save_at_40_multiclass_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-ratio_Virut-2314.pdf")
+        #plt.show()
+        #plt.title("Integrated gradients")
+        # plt.tight_layout()
+        #plt.savefig(f"gradient_{clip_above_percentile}_save_at_40_multiclass_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-ratio_Htbot-5768.pdf")
+        img = keras.preprocessing.image.array_to_img(igrads_attr.astype(np.uint8))
         plt.tight_layout()
-        plt.savefig(f"gradient_{clip_above_percentile}.pdf")
+        img.save(f"gradient_{clip_above_percentile}_save_at_40_multiclass_cnn_xception_flow-minp2-dim16-cols8-ALL-NONE-ratio_Virut-2314.pdf")
+        
 
 def get_img_array(img_path, size):
     # img is a PIL image of size 128x128
