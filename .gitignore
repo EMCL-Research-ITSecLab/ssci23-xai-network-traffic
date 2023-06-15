@@ -5,7 +5,6 @@ __pycache__/
 wandb
 models
 artifacts
-figures
 .vscode
 *.out
 # C extensions
