@@ -1,4 +1,4 @@
-# SSCI - Session-based Image Traffic Classification
+# SSCI - Explainable artificial intelligence for improving a session-based malware traffic classification with deep learning
 
 ## Getting Started
 
